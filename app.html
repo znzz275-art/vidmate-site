@@ -5,363 +5,391 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#f5820d">
-<title>VidMate App</title>
+<title>VidMate</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{
-  --primary:#f5820d;--primary-dark:#d96a00;--primary-glow:rgba(245,130,13,.15);
-  --bg:#080808;--surface:#111;--surface2:#181818;--surface3:#222;
-  --border:#2a2a2a;--text:#f0f0f0;--muted:#777;--green:#22c55e;--red:#ef4444;
-}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;position:relative}
+:root{--p:#f5820d;--pd:#d96a00;--bg:#080808;--s1:#111;--s2:#181818;--s3:#222;--br:#2a2a2a;--tx:#f0f0f0;--mt:#777;--gn:#22c55e;--rd:#ef4444}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
 
-/* TOPBAR */
-.topbar{background:var(--surface);padding:10px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border)}
-.logo{font-size:20px;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:7px}
-.logo-box{width:30px;height:30px;background:var(--primary);border-radius:8px;display:grid;place-items:center;font-size:15px}
-.topbar-search{flex:1;display:flex;align-items:center;background:var(--surface2);border-radius:22px;padding:7px 14px;gap:7px;border:1.5px solid var(--border)}
-.topbar-search input{background:none;border:none;outline:none;color:var(--text);font-size:13px;flex:1;font-family:inherit}
-.topbar-search input::placeholder{color:var(--muted)}
-.notif-wrap{position:relative}
-.notif-dot{position:absolute;top:0;left:0;width:7px;height:7px;background:var(--red);border-radius:50%}
+/* topbar */
+.topbar{background:var(--s1);padding:10px 14px;display:flex;align-items:center;gap:9px;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--br)}
+.logo{font-size:19px;font-weight:900;color:var(--p);display:flex;align-items:center;gap:6px;flex-shrink:0}
+.logo-box{width:28px;height:28px;background:var(--p);border-radius:7px;display:grid;place-items:center;font-size:13px;color:#fff}
+.tsearch{flex:1;display:flex;align-items:center;background:var(--s2);border-radius:20px;padding:6px 12px;gap:6px;border:1.5px solid var(--br)}
+.tsearch input{background:none;border:none;outline:none;color:var(--tx);font-size:12px;flex:1;font-family:inherit}
+.tsearch input::placeholder{color:var(--mt)}
+.notif{position:relative;font-size:19px;cursor:pointer}
+.ndot{position:absolute;top:0;left:0;width:7px;height:7px;background:var(--rd);border-radius:50%}
 
-/* HERO BANNER */
-.hero-banner{background:linear-gradient(135deg,#1a0800,#2a1000);padding:16px;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:12px}
-.hero-text h2{font-size:18px;font-weight:900;color:var(--primary)}
-.hero-text p{font-size:12px;color:#bbb;margin-top:2px}
-.apk-btn{background:var(--primary);color:#fff;border:none;padding:9px 16px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;flex-shrink:0}
+/* hero */
+.hero-bar{background:linear-gradient(135deg,#1a0800,#2a1000);padding:14px;border-bottom:2px solid var(--p);display:flex;align-items:center;gap:12px}
+.hero-bar h2{font-size:17px;font-weight:900;color:var(--p)}
+.hero-bar p{font-size:11px;color:#bbb;margin-top:2px}
+.apk-btn{background:var(--p);color:#fff;border:none;padding:8px 14px;border-radius:18px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;flex-shrink:0}
 
-/* URL INPUT */
-.url-section{padding:12px 14px;background:var(--surface);border-bottom:1px solid var(--border)}
-.url-label{font-size:12px;color:var(--muted);margin-bottom:8px}
-.url-row{display:flex;gap:6px}
-.url-in{flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;color:var(--text);font-size:13px;outline:none;font-family:inherit}
-.url-in:focus{border-color:var(--primary)}
-.paste-b{background:var(--surface3);border:1.5px solid var(--border);color:var(--text);padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12px;font-family:inherit}
-.go-b{background:var(--primary);border:none;color:#fff;padding:9px 14px;border-radius:9px;font-weight:700;cursor:pointer;font-family:inherit;font-size:13px}
+/* url */
+.url-sec{padding:11px 13px;background:var(--s1);border-bottom:1px solid var(--br)}
+.url-lbl{font-size:11px;color:var(--mt);margin-bottom:7px}
+.url-row{display:flex;gap:5px}
+.url-in{flex:1;background:var(--s2);border:1.5px solid var(--br);border-radius:8px;padding:8px 11px;color:var(--tx);font-size:12px;outline:none;font-family:inherit}
+.url-in:focus{border-color:var(--p)}
+.pb{background:var(--s3);border:1.5px solid var(--br);color:var(--tx);padding:8px 10px;border-radius:8px;cursor:pointer;font-size:11px;font-family:inherit}
+.go-b{background:var(--p);border:none;color:#fff;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px}
 
-/* PLATFORM CHIPS */
-.chips-section{padding:12px 14px;border-bottom:1px solid var(--border)}
-.chips-row{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px}
-.chips-row::-webkit-scrollbar{display:none}
-.chip{display:flex;align-items:center;gap:5px;background:var(--surface);border:1.5px solid var(--border);border-radius:18px;padding:5px 12px;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;flex-shrink:0}
-.chip:hover{border-color:var(--primary);color:var(--primary)}
+/* chips */
+.chips-sec{padding:10px 13px;border-bottom:1px solid var(--br)}
+.chip-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.chip-row::-webkit-scrollbar{display:none}
+.chip{display:flex;align-items:center;gap:4px;background:var(--s1);border:1.5px solid var(--br);border-radius:16px;padding:5px 10px;font-size:11px;color:var(--mt);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.chip:hover{border-color:var(--p);color:var(--p)}
 
-/* TABS */
-.tabs{display:flex;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+/* tabs */
+.tabs{display:flex;background:var(--s1);border-bottom:1px solid var(--br);overflow-x:auto}
 .tabs::-webkit-scrollbar{display:none}
-.tab{padding:11px 16px;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);white-space:nowrap;border-bottom:2.5px solid transparent;font-family:inherit;background:none;border-top:none;border-right:none;border-left:none}
-.tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+.tab{padding:10px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--mt);white-space:nowrap;border-bottom:2.5px solid transparent;font-family:inherit;background:none;border-top:none;border-right:none;border-left:none}
+.tab.on{color:var(--p);border-bottom-color:var(--p)}
 
-/* FEATURED SCROLL */
-.feat-section{padding:10px 14px 4px}
-.sec-label{font-size:13px;font-weight:700;margin-bottom:8px}
-.feat-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+/* featured */
+.feat-sec{padding:10px 13px 4px}
+.sec-lbl{font-size:12px;font-weight:700;margin-bottom:8px}
+.feat-scroll{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}
 .feat-scroll::-webkit-scrollbar{height:2px}
-.feat-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:1px}
-.feat-card{min-width:160px;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
-.feat-thumb{width:160px;height:95px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative}
-.feat-over{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:18px 7px 7px}
-.feat-title{font-size:11px;color:#fff;font-weight:600;line-height:1.3}
-.feat-dur{font-size:10px;color:#aaa}
-.play-over{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:30px;height:30px;background:rgba(245,130,13,.9);border-radius:50%;display:grid;place-items:center;font-size:13px;opacity:0;transition:.2s}
-.feat-card:hover .play-over{opacity:1}
+.feat-scroll::-webkit-scrollbar-thumb{background:var(--br)}
+.feat-card{min-width:155px;border-radius:9px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
+.feat-thumb{width:155px;height:90px;background:#000;overflow:hidden;position:relative}
+.feat-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.feat-over{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.87));padding:18px 7px 7px}
+.feat-title{font-size:10px;color:#fff;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.feat-dur{font-size:9px;color:#bbb;margin-top:2px}
+.feat-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;background:rgba(245,130,13,.92);border-radius:50%;display:grid;place-items:center;font-size:12px;opacity:0;transition:.2s}
+.feat-card:hover .feat-play{opacity:1}
 
-/* VIDEO GRID */
-.vgrid-section{padding:0 10px 10px}
-.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.vcard{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s}
-.vcard:hover{border-color:var(--primary)}
-.vthumb{aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:30px;position:relative}
-.vdur{position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,.8);color:#fff;font-size:9px;padding:2px 5px;border-radius:4px}
+/* vgrid */
+.vgrid-sec{padding:0 10px 10px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vcard{background:var(--s1);border:1.5px solid var(--br);border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s}
+.vcard:hover{border-color:var(--p)}
+.vthumb{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
+.vthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.vdur{position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,.82);color:#fff;font-size:9px;padding:2px 5px;border-radius:4px}
 .vinfo{padding:7px}
 .vtitle{font-size:11px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.vmeta{font-size:10px;color:var(--muted);margin-top:3px}
-.vdl{display:flex;align-items:center;justify-content:center;gap:3px;background:var(--primary);color:#fff;border:none;width:100%;padding:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.vmeta{font-size:10px;color:var(--mt);margin-top:3px}
+.vdl{display:flex;align-items:center;justify-content:center;gap:3px;background:var(--p);color:#fff;border:none;width:100%;padding:6px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
+/* skeleton */
+.sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200% 100%;animation:sh 1.5s infinite;border-radius:6px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-/* PAGES */
-.page{display:none;padding-bottom:68px}
+/* pages */
+.page{display:none;padding-bottom:66px}
 .page.on{display:block}
 
-/* SEARCH PAGE */
-.search-page{padding:12px 14px 68px}
-.trend-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer}
-.trend-n{font-size:14px;font-weight:700;color:var(--muted);width:22px}
-.trend-t{font-size:13px}
+/* search */
+.search-pg{padding:11px 13px 66px}
+.trend-item{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--br);cursor:pointer}
+.t-num{font-size:13px;font-weight:700;color:var(--mt);width:20px}
+.t-txt{font-size:12px}
 
-/* LIVE PAGE */
-.live-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}
-.live-card{background:var(--surface);border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;border:1.5px solid var(--border)}
-.live-card:hover{border-color:var(--primary)}
-.live-icon{font-size:26px;margin-bottom:5px}
+/* live */
+.live-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:11px}
+.live-card{background:var(--s1);border-radius:9px;padding:11px 7px;text-align:center;cursor:pointer;border:1.5px solid var(--br)}
+.live-card:hover{border-color:var(--p)}
+.live-icon{font-size:24px;margin-bottom:4px}
 .live-name{font-size:10px;color:#ccc}
-.live-badge{display:inline-block;background:var(--red);color:#fff;font-size:8px;padding:2px 5px;border-radius:6px;font-weight:700;margin-bottom:3px}
+.live-badge{display:inline-block;background:var(--rd);color:#fff;font-size:8px;padding:2px 5px;border-radius:5px;font-weight:700;margin-bottom:3px}
 
-/* DOWNLOADS PAGE */
-.dl-header{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
-.dl-tabs{display:flex;gap:6px;padding:8px 14px;border-bottom:1px solid var(--border);overflow-x:auto}
+/* dl page */
+.dl-hd{padding:11px 13px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--br)}
+.dl-tabs{display:flex;gap:5px;padding:7px 13px;border-bottom:1px solid var(--br);overflow-x:auto}
 .dl-tabs::-webkit-scrollbar{display:none}
-.dltab{background:var(--surface);border:1.5px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;white-space:nowrap;font-family:inherit}
-.dltab.on{background:var(--primary-glow);border-color:var(--primary);color:var(--primary);font-weight:700}
-.dl-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--border)}
-.dl-thumb{width:52px;height:36px;background:var(--surface2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.dtab{background:var(--s1);border:1.5px solid var(--br);color:var(--mt);padding:4px 10px;border-radius:13px;font-size:10px;cursor:pointer;white-space:nowrap;font-family:inherit}
+.dtab.on{background:rgba(245,130,13,.15);border-color:var(--p);color:var(--p);font-weight:700}
+.dl-item{display:flex;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--br)}
+.dl-thumb{width:50px;height:34px;background:var(--s2);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;overflow:hidden}
+.dl-thumb img{width:100%;height:100%;object-fit:cover}
 .dl-info{flex:1;overflow:hidden}
-.dl-name{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dl-size{font-size:10px;color:var(--muted);margin-top:2px}
-.dl-status{font-size:10px;padding:3px 7px;border-radius:7px;font-weight:700;flex-shrink:0}
-.dl-status.done{background:#0f2d1a;color:var(--green)}
-.dl-status.prog{background:#2d1a0f;color:var(--primary)}
-.prog-bg{background:var(--surface3);border-radius:3px;height:4px;margin-top:4px;overflow:hidden}
-.prog-fill{height:4px;background:var(--primary);border-radius:3px;transition:width .3s}
+.dl-name{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dl-sz{font-size:10px;color:var(--mt);margin-top:2px}
+.dl-st{font-size:10px;padding:3px 7px;border-radius:6px;font-weight:700;flex-shrink:0}
+.dl-st.done{background:#0f2d1a;color:var(--gn)}
 
-/* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;z-index:50}
-.bnav{flex:1;padding:9px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--muted);font-size:9px;border:none;background:none;font-family:inherit;transition:.15s}
-.bnav.on{color:var(--primary)}
-.bnav svg{width:20px;height:20px;fill:currentColor}
+/* bottom nav */
+.bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--s1);border-top:1px solid var(--br);display:flex;z-index:50}
+.bn{flex:1;padding:8px 4px 7px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--mt);font-size:9px;border:none;background:none;font-family:inherit}
+.bn.on{color:var(--p)}
+.bn svg{width:19px;height:19px;fill:currentColor}
 
-/* QUALITY PANEL */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:flex-end;max-width:430px;left:50%;transform:translateX(-50%)}
+/* quality panel */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:none;align-items:flex-end;justify-content:center}
 .overlay.open{display:flex}
-.qpanel{background:var(--surface);border-top:2px solid var(--primary);border-radius:18px 18px 0 0;padding:18px;width:100%;max-height:78vh;overflow-y:auto}
-.qpanel-title{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-.qrow{display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;margin-bottom:7px;cursor:pointer}
-.qrow:hover{border-color:var(--primary)}
-.qlabel{font-size:13px;font-weight:700}
-.qmeta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}
-.qdl{background:var(--primary);color:#fff;border:none;padding:5px 12px;border-radius:14px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.qpanel{background:var(--s1);border-top:2px solid var(--p);border-radius:16px 16px 0 0;padding:16px;width:100%;max-width:430px;max-height:80vh;overflow-y:auto}
+.qp-title{font-size:14px;font-weight:700;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center}
+.qrow{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--br);border-radius:8px;padding:9px 12px;margin-bottom:6px;cursor:pointer}
+.qrow:hover{border-color:var(--p)}
+.qlbl{font-size:12px;font-weight:700}
+.qmt{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mt)}
+.qdl{background:var(--p);color:#fff;border:none;padding:4px 11px;border-radius:12px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
+.vid-prev{display:flex;gap:9px;margin-bottom:11px;padding-bottom:11px;border-bottom:1px solid var(--br)}
+.vid-prev img{width:90px;height:52px;object-fit:cover;border-radius:6px;background:#000;flex-shrink:0}
+.vid-prev-info{flex:1;overflow:hidden}
+.vid-prev-title{font-size:11px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vid-prev-ch{font-size:10px;color:var(--mt);margin-top:3px}
 
-/* TOAST */
-.toast{position:fixed;top:66px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--surface3);color:#fff;padding:9px 20px;border-radius:22px;font-size:12px;border:1px solid var(--border);opacity:0;transition:.3s;z-index:200;pointer-events:none;max-width:300px;text-align:center;white-space:nowrap}
+/* settings */
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:1px solid var(--br)}
+.set-lbl{font-size:12px}
+.set-val{font-size:11px;color:var(--mt)}
+.toggle{width:38px;height:21px;background:var(--s3);border-radius:10.5px;position:relative;cursor:pointer;transition:.2s;border:none;flex-shrink:0}
+.toggle.on{background:var(--p)}
+.toggle::after{content:'';position:absolute;top:2.5px;left:2.5px;width:16px;height:16px;background:#fff;border-radius:50%;transition:.2s}
+.toggle.on::after{left:19.5px}
+
+/* toast */
+.toast{position:fixed;top:64px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:8px 18px;border-radius:20px;font-size:12px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none;max-width:90%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
-
 <div class="toast" id="toast"></div>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="logo"><div class="logo-box">▶</div>VidMate</div>
-  <div class="topbar-search">
-    <span style="color:var(--muted);font-size:14px">🔍</span>
-    <input type="text" placeholder="ابحث..." id="topSearch">
+  <div class="tsearch">
+    <span style="color:var(--mt);font-size:13px">🔍</span>
+    <input type="text" id="searchIn" placeholder="ابحث..." onkeydown="if(event.key==='Enter')appSearch()">
   </div>
-  <div class="notif-wrap">
-    <span style="font-size:20px;cursor:pointer" onclick="showToast('🔔 لا يوجد إشعارات جديدة')">🔔</span>
-    <div class="notif-dot"></div>
-  </div>
+  <div class="notif" onclick="showToast('🔔 لا يوجد إشعارات جديدة')">🔔<div class="ndot"></div></div>
 </div>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 <div class="page on" id="page-home">
-  <div class="hero-banner">
-    <div class="hero-text" style="flex:1">
-      <h2>⚡ VidMate 2026</h2>
-      <p>تحميل فيديو من 1000+ منصة · مجاناً</p>
-    </div>
+  <div class="hero-bar">
+    <div style="flex:1"><h2>⚡ VidMate 2026</h2><p>تحميل فيديو من 1000+ منصة · مجاناً</p></div>
     <button class="apk-btn" onclick="showToast('📱 جاري تحميل APK...')">⬇️ APK</button>
   </div>
-
-  <div class="url-section">
-    <div class="url-label">📥 الصق رابط الفيديو</div>
+  <div class="url-sec">
+    <div class="url-lbl">📥 الصق رابط الفيديو</div>
     <div class="url-row">
       <input class="url-in" id="urlIn" type="url" placeholder="https://youtube.com/...">
-      <button class="paste-b" onclick="pasteApp()">📋</button>
+      <button class="pb" onclick="pasteApp()">📋</button>
       <button class="go-b" onclick="analyzeApp()">⚡</button>
     </div>
   </div>
-
-  <div class="chips-section">
-    <div class="chips-row" id="appChips"></div>
-  </div>
-
+  <div class="chips-sec"><div class="chip-row" id="chips"></div></div>
   <div class="tabs" id="appTabs">
     <button class="tab on" onclick="switchAppTab(this,'trending')">🔥 ترند</button>
-    <button class="tab" onclick="switchAppTab(this,'movies')">🎬 أفلام</button>
     <button class="tab" onclick="switchAppTab(this,'music')">🎵 موسيقى</button>
     <button class="tab" onclick="switchAppTab(this,'sports')">⚽ رياضة</button>
+    <button class="tab" onclick="switchAppTab(this,'gaming')">🎮 ألعاب</button>
     <button class="tab" onclick="switchAppTab(this,'news')">📰 أخبار</button>
   </div>
-
-  <div class="feat-section">
-    <div class="sec-label">⭐ مميزة</div>
-    <div class="feat-scroll" id="appFeatured"></div>
+  <div class="feat-sec">
+    <div class="sec-lbl">⭐ مميزة</div>
+    <div class="feat-scroll" id="featScroll"></div>
   </div>
-
-  <div class="feat-section">
-    <div class="sec-label" id="appGridTitle">🔥 الأكثر مشاهدة</div>
-  </div>
-  <div class="vgrid-section">
-    <div class="vgrid" id="appGrid"></div>
-  </div>
+  <div class="feat-sec"><div class="sec-lbl" id="gridTitle">🔥 الأكثر مشاهدة</div></div>
+  <div class="vgrid-sec"><div class="vgrid" id="appGrid"></div></div>
 </div>
 
-<!-- SEARCH PAGE -->
+<!-- SEARCH -->
 <div class="page" id="page-search">
-  <div class="search-page">
-    <div class="topbar-search" style="margin-bottom:14px;background:var(--surface)">
-      <span style="color:var(--muted);font-size:14px">🔍</span>
-      <input type="text" placeholder="ابحث هنا..." style="background:none;border:none;outline:none;color:var(--text);font-size:13px;flex:1;font-family:inherit">
-      <button style="background:var(--primary);border:none;color:#fff;padding:5px 12px;border-radius:14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit" onclick="showToast('🔍 جاري البحث...')">بحث</button>
+  <div class="search-pg">
+    <div class="tsearch" style="margin-bottom:12px;background:var(--s1)">
+      <span style="color:var(--mt);font-size:13px">🔍</span>
+      <input type="text" id="searchIn2" placeholder="ابحث هنا..." style="background:none;border:none;outline:none;color:var(--tx);font-size:12px;flex:1;font-family:inherit" onkeydown="if(event.key==='Enter')appSearch2()">
+      <button onclick="appSearch2()" style="background:var(--p);border:none;color:#fff;padding:5px 11px;border-radius:13px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">بحث</button>
     </div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:8px">🔥 الأكثر بحثاً</div>
-    <div id="appTrending"></div>
-    <div style="font-size:12px;color:var(--muted);margin:16px 0 8px">📂 التصنيفات</div>
-    <div class="chips-row" id="appCategories" style="flex-wrap:wrap;overflow:visible"></div>
+    <div style="font-size:11px;color:var(--mt);margin-bottom:7px">🔥 الأكثر بحثاً</div>
+    <div id="trendList"></div>
+    <div style="font-size:11px;color:var(--mt);margin:13px 0 7px">📂 التصنيفات</div>
+    <div class="chip-row" id="catList" style="flex-wrap:wrap;overflow:visible"></div>
   </div>
 </div>
 
-<!-- LIVE PAGE -->
+<!-- LIVE -->
 <div class="page" id="page-live">
-  <div style="padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)">📡 بث مباشر</div>
-  <div class="live-grid" id="appLive"></div>
+  <div style="padding:9px 13px;border-bottom:1px solid var(--br);font-size:12px;color:var(--mt)">📡 بث مباشر</div>
+  <div class="live-grid" id="liveGrid"></div>
 </div>
 
-<!-- DOWNLOADS PAGE -->
+<!-- DOWNLOADS -->
 <div class="page" id="page-dl">
-  <div class="dl-header">
-    <span style="font-size:14px;font-weight:700">⬇️ تحميلاتي</span>
-    <button style="background:none;border:1.5px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-family:inherit" onclick="clearAppDl()">مسح الكل</button>
+  <div class="dl-hd">
+    <span style="font-size:13px;font-weight:700">⬇️ تحميلاتي</span>
+    <button onclick="clrDl()" style="background:none;border:1.5px solid var(--br);color:var(--mt);padding:5px 11px;border-radius:12px;font-size:10px;cursor:pointer;font-family:inherit">مسح الكل</button>
   </div>
   <div class="dl-tabs">
-    <button class="dltab on">الكل</button>
-    <button class="dltab">فيديو</button>
-    <button class="dltab">صوت</button>
-    <button class="dltab">جاري</button>
+    <button class="dtab on">الكل</button>
+    <button class="dtab">فيديو</button>
+    <button class="dtab">صوت</button>
   </div>
-  <div id="appDlList"></div>
+  <div id="dlList"></div>
 </div>
 
-<!-- SETTINGS PAGE -->
+<!-- SETTINGS -->
 <div class="page" id="page-settings">
-  <div style="padding:12px 14px;font-size:15px;font-weight:700;border-bottom:1px solid var(--border)">⚙️ الإعدادات</div>
-  <div id="appSettings"></div>
-  <div style="padding:14px;text-align:center">
-    <a href="admin.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--primary-glow);border:1.5px solid var(--primary);color:var(--primary);padding:10px 20px;border-radius:20px;font-size:13px;font-weight:700;text-decoration:none">⚙️ لوحة إدارة الموقع</a>
-  </div>
-  <div style="padding:0 14px;text-align:center">
-    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1.5px solid var(--border);color:var(--muted);padding:10px 20px;border-radius:20px;font-size:13px;text-decoration:none">🌐 الموقع الرسمي</a>
+  <div style="padding:11px 13px;font-size:14px;font-weight:700;border-bottom:1px solid var(--br)">⚙️ الإعدادات</div>
+  <div style="padding:8px 13px;font-size:10px;color:var(--mt);border-bottom:1px solid var(--br);text-transform:uppercase;letter-spacing:1px">التحميل</div>
+  <div class="set-row"><span class="set-lbl">جودة افتراضية</span><span class="set-val">1080p HD</span></div>
+  <div class="set-row"><span class="set-lbl">تحميل في الخلفية</span><button class="toggle on" onclick="this.classList.toggle('on')"></button></div>
+  <div class="set-row"><span class="set-lbl">Wi-Fi فقط</span><button class="toggle" onclick="this.classList.toggle('on')"></button></div>
+  <div style="padding:8px 13px;font-size:10px;color:var(--mt);border-bottom:1px solid var(--br);text-transform:uppercase;letter-spacing:1px;margin-top:6px">النظام</div>
+  <div class="set-row"><span class="set-lbl">الإصدار</span><span class="set-val">VidMate 5.0</span></div>
+  <div class="set-row" onclick="showToast('✅ التطبيق محدث!')"><span class="set-lbl">تحديث</span><span class="set-val" style="color:var(--gn)">✓ محدث</span></div>
+  <div class="set-row" onclick="showToast('✅ تم مسح الكاش!')"><span class="set-lbl">مسح الكاش</span><span class="set-val">156 MB ›</span></div>
+  <div style="padding:14px 13px;display:flex;flex-direction:column;gap:9px">
+    <a href="vidmate_admin.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(245,130,13,.12);border:1.5px solid var(--p);color:var(--p);padding:10px;border-radius:18px;font-size:12px;font-weight:700">⚙️ لوحة إدارة الموقع</a>
+    <a href="vidmate_index.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--s1);border:1.5px solid var(--br);color:var(--mt);padding:10px;border-radius:18px;font-size:12px">🌐 الموقع الرسمي</a>
   </div>
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="bottom-nav">
-  <button class="bnav on" id="bn-home" onclick="goApp('home')">
+<div class="bot-nav">
+  <button class="bn on" id="bn-home" onclick="goPage('home')">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>الرئيسية
   </button>
-  <button class="bnav" id="bn-search" onclick="goApp('search')">
+  <button class="bn" id="bn-search" onclick="goPage('search')">
     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>بحث
   </button>
-  <button class="bnav" id="bn-live" onclick="goApp('live')">
+  <button class="bn" id="bn-live" onclick="goPage('live')">
     <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>بث مباشر
   </button>
-  <button class="bnav" id="bn-dl" onclick="goApp('dl')">
+  <button class="bn" id="bn-dl" onclick="goPage('dl')">
     <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميلاتي
   </button>
-  <button class="bnav" id="bn-settings" onclick="goApp('settings')">
+  <button class="bn" id="bn-settings" onclick="goPage('settings')">
     <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>إعدادات
   </button>
 </div>
 
-<!-- QUALITY OVERLAY -->
-<div class="overlay" id="appOverlay" onclick="if(event.target===this)closeAppPanel()">
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeOv()">
   <div class="qpanel">
-    <div class="qpanel-title">اختر الجودة <span style="cursor:pointer;color:var(--muted)" onclick="closeAppPanel()">✕</span></div>
-    <div id="appQualityList"></div>
-    <div style="margin-top:10px;padding:10px;background:var(--surface2);border-radius:9px">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:7px">🎵 MP3</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-        <div class="qrow" style="margin:0" onclick="doAppDl('MP3 128kbps','🎵','~3 MB')"><span class="qlabel">128 kbps</span><button class="qdl">⬇️</button></div>
-        <div class="qrow" style="margin:0" onclick="doAppDl('MP3 320kbps','🎵','~8 MB')"><span class="qlabel">320 kbps</span><button class="qdl">⬇️</button></div>
-      </div>
-    </div>
+    <div class="qp-title">⬇️ اختر الجودة <span style="cursor:pointer;color:var(--mt)" onclick="closeOv()">✕</span></div>
+    <div id="qContent"></div>
   </div>
 </div>
 
-<script src="shared.js"></script>
+<script src="vidmate_shared.js"></script>
 <script>
-const PLATFORMS=['▶️ YouTube','📘 Facebook','🎵 TikTok','📷 Instagram','🐦 Twitter','🎬 Dailymotion'];
-const TRENDING=['ريال مدريد 2025','أحمد حلمي','موسيقى ريلاكس','مباراة اليوم','وصفة كنافة','تعلم الإنجليزية','مسلسل 2025'];
+const PLAT=['▶️ YouTube','📘 Facebook','🎵 TikTok','📷 Instagram','🐦 Twitter','🎬 Dailymotion'];
+const TRENDS=['ريال مدريد 2025','أحمد حلمي','موسيقى ريلاكس','مباراة اليوم','وصفة كنافة','تعلم الإنجليزية','مسلسل 2025','كوميديا'];
 const CATS=['🎬 أفلام','🎵 موسيقى','⚽ رياضة','📺 مسلسلات','😂 كوميديا','🍳 طبخ','✈️ سفر','🎮 ألعاب'];
 const LIVE=[
   {e:'📺',n:'العربية',l:true},{e:'🎙️',n:'MBC مصر',l:true},{e:'🌐',n:'BBC Arabic',l:true},
   {e:'🔴',n:'الجزيرة',l:true},{e:'⭐',n:'روتانا',l:false},{e:'📡',n:'Sport TV',l:true},
 ];
-let currentV=null;
-let cachedApp={};
+let curV=null, cache={};
 
-document.getElementById('appChips').innerHTML=PLATFORMS.map(p=>`<div class="chip">${p}</div>`).join('');
+document.getElementById('chips').innerHTML=PLAT.map(p=>`<div class="chip">${p}</div>`).join('');
 
-function renderAppFeatured(list){
-  if(!list||!list.length) return;
-  document.getElementById('appFeatured').innerHTML=list.slice(0,5).map(v=>`
-    <div class="feat-card" onclick="openAppPanel(${JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;')})">
-      <div class="feat-thumb" style="background:#000;overflow:hidden">
-        <img src="${v.thumbnailHigh||v.thumbnail||''}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
-      </div>
-      <div class="play-over">▶</div>
-      <div class="feat-over">
-        <div class="feat-title">${v.title}</div>
-        <div class="feat-dur">👁 ${v.views} · ${v.channel||''}</div>
-      </div>
+// ── skeletons ─────────────────────────────────────────────
+function showSk(){
+  document.getElementById('appGrid').innerHTML=Array(8).fill(0).map(()=>`
+    <div class="vcard" style="pointer-events:none">
+      <div class="vthumb sk"></div>
+      <div class="vinfo"><div class="sk" style="height:12px;margin-bottom:5px;border-radius:3px"></div><div class="sk" style="height:10px;width:55%;border-radius:3px"></div></div>
+      <div style="height:28px;background:var(--s3)"></div>
     </div>`).join('');
 }
 
-function renderAppGrid(list){
+// ── render ────────────────────────────────────────────────
+function renderFeat(list){
+  if(!list||!list.length) return;
+  document.getElementById('featScroll').innerHTML=list.slice(0,6).map(v=>`
+    <div class="feat-card" onclick="openQPanel(${esc(v)})">
+      <div class="feat-thumb"><img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'"></div>
+      <div class="feat-play">▶</div>
+      <div class="feat-over"><div class="feat-title">${v.title}</div><div class="feat-dur">👁 ${v.views}</div></div>
+    </div>`).join('');
+}
+
+function renderGrid(list){
   if(!list||!list.length){
-    document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:13px">⏳ جاري التحميل...</div>`;
+    document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--mt);font-size:12px">⚠️ تعذر التحميل — <span style="color:var(--p);cursor:pointer" onclick="loadAppCat(curCat)">إعادة المحاولة</span></div>`;
     return;
   }
   document.getElementById('appGrid').innerHTML=list.map(v=>`
     <div class="vcard">
-      <div class="vthumb" style="background:#000;overflow:hidden;position:relative">
-        <img src="${v.thumbnail||''}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'">
-        <span class="vdur">${v.duration||'—'}</span>
+      <div class="vthumb">
+        <img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
+        <span class="vdur">${v.duration}</span>
       </div>
-      <div class="vinfo"><div class="vtitle">${v.title}</div><div class="vmeta">👁 ${v.views} · ${v.channel||''}</div></div>
-      <button class="vdl" onclick="openAppPanel(${JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;')})">⬇️ تحميل</button>
+      <div class="vinfo"><div class="vtitle">${v.title}</div><div class="vmeta">👁 ${v.views}</div></div>
+      <button class="vdl" onclick="openQPanel(${esc(v)})">⬇️ تحميل</button>
     </div>`).join('');
 }
 
-async function loadAppVideos(cat='trending'){
-  renderAppGrid([]);
-  if(cachedApp[cat]){renderAppGrid(cachedApp[cat]);if(cat==='trending')renderAppFeatured(cachedApp[cat]);return;}
-  let videos=[];
-  if(cat==='trending') videos=await YT.getTrending('EG',12);
-  else videos=await YT.getByCategory(YT.categories[cat]||'10','EG',12);
-  if(videos.length){cachedApp[cat]=videos;renderAppGrid(videos);if(cat==='trending')renderAppFeatured(videos);}
-  else document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:13px">⚠️ تعذر تحميل الفيديوهات</div>`;
+function esc(v){return JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
+let curCat='trending';
+async function loadAppCat(cat){
+  curCat=cat;
+  if(cache[cat]){renderGrid(cache[cat]);if(cat==='trending')renderFeat(cache[cat]);return;}
+  showSk();
+  const list=cat==='trending'?await YT.getTrending('EG',12):await YT.getByCategory(cat,12);
+  cache[cat]=list;
+  renderGrid(list);
+  if(cat==='trending') renderFeat(list);
 }
 
 async function switchAppTab(el,cat){
   document.querySelectorAll('#appTabs .tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
-  const labels={trending:'🔥 ترند',movies:'🎬 أفلام',music:'🎵 موسيقى',sports:'⚽ رياضة',news:'📰 أخبار'};
-  document.getElementById('appGridTitle').textContent=labels[cat]||'فيديوهات';
-  await loadAppVideos(cat);
+  const lb={trending:'🔥 ترند',music:'🎵 موسيقى',sports:'⚽ رياضة',gaming:'🎮 ألعاب',news:'📰 أخبار'};
+  document.getElementById('gridTitle').textContent=lb[cat]||'فيديوهات';
+  await loadAppCat(cat);
 }
 
-function goApp(name){
+// ── pages ─────────────────────────────────────────────────
+function goPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.bnav').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.bn').forEach(b=>b.classList.remove('on'));
   document.getElementById('page-'+name).classList.add('on');
   document.getElementById('bn-'+name).classList.add('on');
-  const fns={search:renderAppSearch,live:renderAppLive,dl:renderAppDl,settings:renderAppSettings};
+  const fns={search:renderSearch,live:renderLive,dl:renderDl};
   if(fns[name]) fns[name]();
 }
 
-function renderAppSearch(){
-  document.getElementById('appTrending').innerHTML=TRENDING.map((t,i)=>`
-    <div class="trend-item"><span class="trend-n">${i+1}</span><span class="trend-t">${t}</span><span style="margin-right:auto;font-size:16px">🔥</span></div>`).join('');
-  document.getElementById('appCategories').innerHTML=CATS.map(c=>`<div class="chip" onclick="showToast('🔍 بحث: '+this.textContent)">${c}</div>`).join('');
+function renderSearch(){
+  document.getElementById('trendList').innerHTML=TRENDS.map((t,i)=>`
+    <div class="trend-item" onclick="doSearchCat('${t}')">
+      <span class="t-num">${i+1}</span><span class="t-txt">${t}</span>
+      <span style="margin-right:auto;font-size:14px">🔥</span></div>`).join('');
+  document.getElementById('catList').innerHTML=CATS.map(c=>`
+    <div class="chip" onclick="doSearchCat('${c.replace(/[🎬🎵⚽📺😂🍳✈️🎮]/gu,'').trim()}')">${c}</div>`).join('');
 }
 
-function renderAppLive(){
-  document.getElementById('appLive').innerHTML=LIVE.map(ch=>`
+async function appSearch(){
+  const q=document.getElementById('searchIn').value.trim();
+  if(!q) return;
+  goPage('search');
+  setTimeout(()=>{document.getElementById('searchIn2').value=q; appSearch2();},100);
+}
+async function appSearch2(){
+  const q=document.getElementById('searchIn2').value.trim();
+  if(!q) return;
+  showToast('🔍 جاري البحث...');
+  goPage('home');
+  document.getElementById('gridTitle').textContent='🔍 نتائج: '+q;
+  showSk();
+  const r=await YT.search(q,12);
+  renderGrid(r);
+}
+async function doSearchCat(q){
+  showToast('🔍 '+q);
+  goPage('home');
+  document.getElementById('gridTitle').textContent='🔍 '+q;
+  showSk();
+  const r=await YT.search(q,12);
+  renderGrid(r);
+}
+
+function renderLive(){
+  document.getElementById('liveGrid').innerHTML=LIVE.map(ch=>`
     <div class="live-card" onclick="showToast('📺 جاري فتح ${ch.n}')">
       ${ch.l?'<div class="live-badge">🔴 LIVE</div><br>':''}
       <div class="live-icon">${ch.e}</div>
@@ -369,94 +397,83 @@ function renderAppLive(){
     </div>`).join('');
 }
 
-function renderAppDl(){
+function renderDl(){
   const dls=VM.getDownloads();
-  document.getElementById('appDlList').innerHTML=dls.length
-    ? dls.map(d=>`<div class="dl-item"><div class="dl-thumb">🎬</div><div class="dl-info"><div class="dl-name">${d.title}</div><div class="dl-size">${d.size} · ${d.quality}</div></div><div class="dl-status done">✓</div></div>`).join('')
-    : '<div style="padding:30px;text-align:center;color:var(--muted);font-size:13px">لا توجد تحميلات بعد</div>';
+  document.getElementById('dlList').innerHTML=dls.length
+    ? dls.map(d=>`
+      <div class="dl-item">
+        <div class="dl-thumb">${d.thumbnail?`<img src="${d.thumbnail}" onerror="this.style.display='none'">`:'🎬'}</div>
+        <div class="dl-info">
+          <div class="dl-name">${d.title||'فيديو'}</div>
+          <div class="dl-sz">${d.size||'—'} · ${d.quality||'—'}</div>
+        </div>
+        <div class="dl-st done">✓ مكتمل</div>
+      </div>`).join('')
+    : '<div style="padding:28px;text-align:center;color:var(--mt);font-size:12px">لا توجد تحميلات بعد</div>';
 }
+function clrDl(){VM.saveDownloads([]);renderDl();showToast('✅ تم المسح');}
 
-function clearAppDl(){VM.saveDownloads([]);renderAppDl();showToast('✅ تم المسح');}
-
-function renderAppSettings(){
-  const s=VM.getSettings();
-  document.getElementById('appSettings').innerHTML=`
-    <div style="padding:12px 14px">
-      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px">
-        <div style="padding:10px 14px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px">التحميل</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)"><span style="font-size:13px">جودة افتراضية</span><span style="font-size:12px;color:var(--primary)">1080p HD</span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)"><span style="font-size:13px">تحميل في الخلفية</span><button class="toggle on" onclick="this.classList.toggle('on')"></button></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px"><span style="font-size:13px">Wi-Fi فقط</span><button class="toggle" onclick="this.classList.toggle('on')"></button></div>
-      </div>
-      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px">
-        <div style="padding:10px 14px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px">النظام</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)"><span style="font-size:13px">الإصدار</span><span style="font-size:12px;color:var(--muted)">VidMate 5.0</span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)" onclick="showToast('✅ التطبيق محدث!')"><span style="font-size:13px">تحديث التطبيق</span><span style="font-size:12px;color:var(--green)">✓ محدث</span></div>
-        <div style="padding:11px 14px;display:flex;justify-content:space-between"><span style="font-size:13px">مسح الكاش</span><span style="font-size:12px;color:var(--muted)">156 MB</span></div>
-      </div>
-    </div>`;
-}
-
-function openAppPanel(v){
-  currentV=v;
+// ── quality panel ─────────────────────────────────────────
+function openQPanel(v){
+  curV=v;
   const qs=[
     {q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},
     {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
     {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
   ];
-  document.getElementById('appQualityList').innerHTML=`
-    <div style="display:flex;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)">
-      <img src="${v.thumbnailHigh||v.thumbnail||''}" style="width:100px;height:58px;object-fit:cover;border-radius:7px;background:#000;flex-shrink:0" onerror="this.style.display='none'">
-      <div><div style="font-size:12px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${v.title||'فيديو'}</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:3px">${v.channel||''} · 👁 ${v.views||'—'}</div>
-      <a href="${v.url||'#'}" target="_blank" style="font-size:10px;color:var(--primary);text-decoration:none;margin-top:3px;display:block">▶️ مشاهدة على YouTube</a>
+  document.getElementById('qContent').innerHTML=`
+    <div class="vid-prev">
+      <img src="${v.thumbnailHigh||v.thumbnail}" onerror="this.style.display='none'">
+      <div class="vid-prev-info">
+        <div class="vid-prev-title">${v.title||'فيديو'}</div>
+        <div class="vid-prev-ch">${v.channel||''} · 👁 ${v.views||'—'}</div>
+        <a href="${v.url||'#'}" target="_blank" style="font-size:10px;color:var(--p);display:block;margin-top:3px">▶️ مشاهدة على YouTube</a>
       </div>
     </div>
     ${qs.map(q=>`
-    <div class="qrow" onclick="doAppDl('${q.q}','🎬','${q.s}')">
-      <span class="qlabel">${q.i} ${q.q}</span>
-      <span class="qmeta">${q.s} <button class="qdl">⬇️</button></span>
-    </div>`).join('')}`;
-  document.getElementById('appOverlay').classList.add('open');
+    <div class="qrow" onclick="doDl('${q.q}','${q.s}')">
+      <span class="qlbl">${q.i} ${q.q}</span>
+      <span class="qmt">${q.s}<button class="qdl">⬇️</button></span>
+    </div>`).join('')}
+    <div style="margin-top:9px;padding:9px;background:var(--s2);border-radius:8px">
+      <div style="font-size:11px;color:var(--mt);margin-bottom:6px">🎵 MP3</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <div class="qrow" style="margin:0" onclick="doDl('MP3 128kbps','~3 MB')"><span class="qlbl">128 kbps</span><button class="qdl">⬇️</button></div>
+        <div class="qrow" style="margin:0" onclick="doDl('MP3 320kbps','~8 MB')"><span class="qlbl">320 kbps</span><button class="qdl">⬇️</button></div>
+      </div>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
 }
-function closeAppPanel(){document.getElementById('appOverlay').classList.remove('open');}
+function closeOv(){document.getElementById('overlay').classList.remove('open');}
 
-function doAppDl(quality,emoji,size){
-  if(currentV) VM.addDownload({title:currentV.title||currentV.t||'فيديو',quality,size,platform:'YouTube',userId:1});
-  closeAppPanel();
-  showToast('✅ بدأ التحميل · '+quality);
+function doDl(quality,size){
+  if(curV) VM.addDownload({title:curV.title||'فيديو',quality,size,platform:'YouTube',thumbnail:curV.thumbnail,userId:1});
+  closeOv();
+  showToast('✅ تم إضافة التحميل · '+quality);
 }
 
+// ── analyze URL ───────────────────────────────────────────
 async function analyzeApp(){
   const u=document.getElementById('urlIn').value.trim();
   if(!u){showToast('❌ الصق رابط أولاً');return;}
   showToast('⚡ جاري التحليل...');
-  // استخراج Video ID من الرابط
-  const match=u.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  if(match){
-    try{
-      const res=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${match[1]}&key=${YOUTUBE_API_KEY}`);
-      const data=await res.json();
-      if(data.items&&data.items[0]){
-        const item=data.items[0];
-        currentV={title:item.snippet.title,channel:item.snippet.channelTitle,thumbnail:item.snippet.thumbnails.medium?.url,thumbnailHigh:item.snippet.thumbnails.high?.url,views:YT.formatNum(item.statistics?.viewCount),url:u,platform:'YouTube'};
-        openAppPanel(currentV);document.getElementById('urlIn').value='';return;
-      }
-    }catch(e){}
-  }
-  currentV={title:'فيديو من الرابط',url:u,platform:'YouTube',thumbnail:'',views:'—',channel:''};
-  openAppPanel(currentV);document.getElementById('urlIn').value='';
-}
-function pasteApp(){
-  navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('urlIn').value=t;showToast('📋 تم اللصق!');}}).catch(()=>{document.getElementById('urlIn').value='https://youtube.com/watch?v=dQw4w9WgXcQ';showToast('📋 تم اللصق!');});
-}
-function showToast(msg){
-  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2000);
+  const info=await YT.getVideoInfo(u);
+  if(info){openQPanel(info);}
+  else showToast('⚠️ لم يتم التعرف على الرابط');
+  document.getElementById('urlIn').value='';
 }
 
-// ── init ──────────────────────────────────────────────────
-loadAppVideos('trending');
+function pasteApp(){
+  navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('urlIn').value=t;showToast('📋 تم اللصق!');}}).catch(()=>showToast('⚠️ الصق يدوياً في الخانة'));
+}
+
+function showToast(m){
+  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+// ── init ─────────────────────────────────────────────────
+loadAppCat('trending');
 </script>
 </body>
 </html>
