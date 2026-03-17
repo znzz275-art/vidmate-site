@@ -3,6 +3,111 @@
 //  Acts as the "API" connecting Website ↔ App ↔ Admin
 // ============================================================
 
+// ── YouTube API ───────────────────────────────────────────
+const YOUTUBE_API_KEY = 'AIzaSyBznR7oQroK6YhNQBoI6kohLmsFTa1f3rs';
+
+const YT = {
+  // جلب فيديوهات ترند حسب المنطقة
+  async getTrending(regionCode = 'EG', maxResults = 20) {
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=${regionCode}&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`
+      );
+      const data = await res.json();
+      if (!data.items) return [];
+      return data.items.map(v => ({
+        id: v.id,
+        title: v.snippet.title,
+        channel: v.snippet.channelTitle,
+        thumbnail: v.snippet.thumbnails.medium?.url || v.snippet.thumbnails.default?.url,
+        thumbnailHigh: v.snippet.thumbnails.high?.url,
+        views: YT.formatNum(v.statistics?.viewCount),
+        duration: YT.parseDuration(v.contentDetails?.duration),
+        publishedAt: v.snippet.publishedAt,
+        url: `https://www.youtube.com/watch?v=${v.id}`,
+        category: v.snippet.categoryId,
+        platform: 'YouTube',
+      }));
+    } catch(e) { console.error('YT API error:', e); return []; }
+  },
+
+  // بحث في يوتيوب
+  async search(query, maxResults = 20) {
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`
+      );
+      const data = await res.json();
+      if (!data.items) return [];
+      return data.items.map(v => ({
+        id: v.id.videoId,
+        title: v.snippet.title,
+        channel: v.snippet.channelTitle,
+        thumbnail: v.snippet.thumbnails.medium?.url,
+        thumbnailHigh: v.snippet.thumbnails.high?.url,
+        views: '—',
+        duration: '—',
+        url: `https://www.youtube.com/watch?v=${v.id.videoId}`,
+        platform: 'YouTube',
+      }));
+    } catch(e) { console.error('YT search error:', e); return []; }
+  },
+
+  // فيديوهات حسب تصنيف
+  async getByCategory(categoryId, regionCode = 'EG', maxResults = 12) {
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&videoCategoryId=${categoryId}&regionCode=${regionCode}&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`
+      );
+      const data = await res.json();
+      if (!data.items) return [];
+      return data.items.map(v => ({
+        id: v.id,
+        title: v.snippet.title,
+        channel: v.snippet.channelTitle,
+        thumbnail: v.snippet.thumbnails.medium?.url,
+        thumbnailHigh: v.snippet.thumbnails.high?.url,
+        views: YT.formatNum(v.statistics?.viewCount),
+        duration: YT.parseDuration(v.contentDetails?.duration),
+        url: `https://www.youtube.com/watch?v=${v.id}`,
+        platform: 'YouTube',
+      }));
+    } catch(e) { return []; }
+  },
+
+  // تنسيق الأرقام
+  formatNum(n) {
+    if (!n) return '—';
+    n = parseInt(n);
+    if (n >= 1000000000) return (n/1000000000).toFixed(1) + 'B';
+    if (n >= 1000000)    return (n/1000000).toFixed(1) + 'M';
+    if (n >= 1000)       return (n/1000).toFixed(0) + 'K';
+    return n.toString();
+  },
+
+  // تحويل مدة ISO 8601 لنص مقروء
+  parseDuration(iso) {
+    if (!iso) return '—';
+    const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+    if (!m) return '—';
+    const h = parseInt(m[1]||0), min = parseInt(m[2]||0), sec = parseInt(m[3]||0);
+    if (h > 0) return `${h}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    return `${min}:${String(sec).padStart(2,'0')}`;
+  },
+
+  // معرّفات التصنيفات
+  categories: {
+    trending: null,
+    music:    '10',
+    gaming:   '20',
+    sports:   '17',
+    news:     '25',
+    comedy:   '23',
+    movies:   '1',
+    tech:     '28',
+  }
+};
+
 const VM = {
   // ── defaults ──────────────────────────────────────────────
   defaults: {

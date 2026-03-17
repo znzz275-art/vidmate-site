@@ -284,18 +284,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);max-w
 
 <script src="shared.js"></script>
 <script>
-const VIDS=[
-  {e:'🌟',t:'أجمل مناظر الطبيعة',v:'15M',d:'12:34',c:'trending',p:'YouTube'},
-  {e:'🎬',t:'فيلم أكشن 2025',v:'8M',d:'2:05:12',c:'movies',p:'Facebook'},
-  {e:'🎵',t:'أحدث الأغاني العربية',v:'22M',d:'3:45',c:'music',p:'SoundCloud'},
-  {e:'⚽',t:'أهداف دوري الأبطال',v:'12M',d:'8:20',c:'sports',p:'YouTube'},
-  {e:'😂',t:'مقاطع كوميديا 2025',v:'30M',d:'15:00',c:'trending',p:'TikTok'},
-  {e:'📰',t:'آخر الأخبار اليوم',v:'5M',d:'6:10',c:'news',p:'YouTube'},
-  {e:'🚀',t:'مستقبل الذكاء الاصطناعي',v:'11M',d:'18:30',c:'trending',p:'YouTube'},
-  {e:'🍳',t:'وصفات رمضانية',v:'9M',d:'10:15',c:'trending',p:'Instagram'},
-  {e:'🎮',t:'مراجعة ألعاب 2025',v:'18M',d:'25:00',c:'movies',p:'YouTube'},
-  {e:'💪',t:'تمارين اللياقة',v:'7M',d:'30:00',c:'sports',p:'YouTube'},
-];
 const PLATFORMS=['▶️ YouTube','📘 Facebook','🎵 TikTok','📷 Instagram','🐦 Twitter','🎬 Dailymotion'];
 const TRENDING=['ريال مدريد 2025','أحمد حلمي','موسيقى ريلاكس','مباراة اليوم','وصفة كنافة','تعلم الإنجليزية','مسلسل 2025'];
 const CATS=['🎬 أفلام','🎵 موسيقى','⚽ رياضة','📺 مسلسلات','😂 كوميديا','🍳 طبخ','✈️ سفر','🎮 ألعاب'];
@@ -303,37 +291,58 @@ const LIVE=[
   {e:'📺',n:'العربية',l:true},{e:'🎙️',n:'MBC مصر',l:true},{e:'🌐',n:'BBC Arabic',l:true},
   {e:'🔴',n:'الجزيرة',l:true},{e:'⭐',n:'روتانا',l:false},{e:'📡',n:'Sport TV',l:true},
 ];
-let currentV=null,progI=null;
+let currentV=null;
+let cachedApp={};
 
-// init
 document.getElementById('appChips').innerHTML=PLATFORMS.map(p=>`<div class="chip">${p}</div>`).join('');
-renderAppGrid(VIDS);
-renderAppFeatured();
 
-function renderAppFeatured(){
-  document.getElementById('appFeatured').innerHTML=VIDS.slice(0,5).map(v=>`
-    <div class="feat-card" onclick="openAppPanel(${JSON.stringify(v).replace(/"/g,'&quot;')})">
-      <div class="feat-thumb">${v.e}</div>
+function renderAppFeatured(list){
+  if(!list||!list.length) return;
+  document.getElementById('appFeatured').innerHTML=list.slice(0,5).map(v=>`
+    <div class="feat-card" onclick="openAppPanel(${JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;')})">
+      <div class="feat-thumb" style="background:#000;overflow:hidden">
+        <img src="${v.thumbnailHigh||v.thumbnail||''}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+      </div>
       <div class="play-over">▶</div>
-      <div class="feat-over"><div class="feat-title">${v.t}</div><div class="feat-dur">👁 ${v.v}</div></div>
+      <div class="feat-over">
+        <div class="feat-title">${v.title}</div>
+        <div class="feat-dur">👁 ${v.views} · ${v.channel||''}</div>
+      </div>
     </div>`).join('');
 }
 
 function renderAppGrid(list){
+  if(!list||!list.length){
+    document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:13px">⏳ جاري التحميل...</div>`;
+    return;
+  }
   document.getElementById('appGrid').innerHTML=list.map(v=>`
     <div class="vcard">
-      <div class="vthumb">${v.e}<span class="vdur">${v.d}</span></div>
-      <div class="vinfo"><div class="vtitle">${v.t}</div><div class="vmeta">👁 ${v.v}</div></div>
-      <button class="vdl" onclick="openAppPanel(${JSON.stringify(v).replace(/"/g,'&quot;')})">⬇️ تحميل</button>
+      <div class="vthumb" style="background:#000;overflow:hidden;position:relative">
+        <img src="${v.thumbnail||''}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'">
+        <span class="vdur">${v.duration||'—'}</span>
+      </div>
+      <div class="vinfo"><div class="vtitle">${v.title}</div><div class="vmeta">👁 ${v.views} · ${v.channel||''}</div></div>
+      <button class="vdl" onclick="openAppPanel(${JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;')})">⬇️ تحميل</button>
     </div>`).join('');
 }
 
-function switchAppTab(el,cat){
+async function loadAppVideos(cat='trending'){
+  renderAppGrid([]);
+  if(cachedApp[cat]){renderAppGrid(cachedApp[cat]);if(cat==='trending')renderAppFeatured(cachedApp[cat]);return;}
+  let videos=[];
+  if(cat==='trending') videos=await YT.getTrending('EG',12);
+  else videos=await YT.getByCategory(YT.categories[cat]||'10','EG',12);
+  if(videos.length){cachedApp[cat]=videos;renderAppGrid(videos);if(cat==='trending')renderAppFeatured(videos);}
+  else document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:13px">⚠️ تعذر تحميل الفيديوهات</div>`;
+}
+
+async function switchAppTab(el,cat){
   document.querySelectorAll('#appTabs .tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
   const labels={trending:'🔥 ترند',movies:'🎬 أفلام',music:'🎵 موسيقى',sports:'⚽ رياضة',news:'📰 أخبار'};
   document.getElementById('appGridTitle').textContent=labels[cat]||'فيديوهات';
-  renderAppGrid(cat==='trending'?VIDS:VIDS.filter(v=>v.c===cat||Math.random()>.5));
+  await loadAppVideos(cat);
 }
 
 function goApp(name){
@@ -395,28 +404,48 @@ function openAppPanel(v){
     {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
     {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
   ];
-  document.getElementById('appQualityList').innerHTML=qs.map(q=>`
+  document.getElementById('appQualityList').innerHTML=`
+    <div style="display:flex;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <img src="${v.thumbnailHigh||v.thumbnail||''}" style="width:100px;height:58px;object-fit:cover;border-radius:7px;background:#000;flex-shrink:0" onerror="this.style.display='none'">
+      <div><div style="font-size:12px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${v.title||'فيديو'}</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:3px">${v.channel||''} · 👁 ${v.views||'—'}</div>
+      <a href="${v.url||'#'}" target="_blank" style="font-size:10px;color:var(--primary);text-decoration:none;margin-top:3px;display:block">▶️ مشاهدة على YouTube</a>
+      </div>
+    </div>
+    ${qs.map(q=>`
     <div class="qrow" onclick="doAppDl('${q.q}','🎬','${q.s}')">
       <span class="qlabel">${q.i} ${q.q}</span>
       <span class="qmeta">${q.s} <button class="qdl">⬇️</button></span>
-    </div>`).join('');
+    </div>`).join('')}`;
   document.getElementById('appOverlay').classList.add('open');
 }
 function closeAppPanel(){document.getElementById('appOverlay').classList.remove('open');}
 
 function doAppDl(quality,emoji,size){
-  if(currentV){
-    VM.addDownload({title:currentV.t||'فيديو',quality,size,platform:currentV.p||'YouTube',userId:1});
-  }
+  if(currentV) VM.addDownload({title:currentV.title||currentV.t||'فيديو',quality,size,platform:'YouTube',userId:1});
   closeAppPanel();
   showToast('✅ بدأ التحميل · '+quality);
 }
 
-function analyzeApp(){
+async function analyzeApp(){
   const u=document.getElementById('urlIn').value.trim();
   if(!u){showToast('❌ الصق رابط أولاً');return;}
   showToast('⚡ جاري التحليل...');
-  setTimeout(()=>{currentV={t:'فيديو من الرابط',p:'YouTube'};openAppPanel(currentV);document.getElementById('urlIn').value='';},600);
+  // استخراج Video ID من الرابط
+  const match=u.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if(match){
+    try{
+      const res=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${match[1]}&key=${YOUTUBE_API_KEY}`);
+      const data=await res.json();
+      if(data.items&&data.items[0]){
+        const item=data.items[0];
+        currentV={title:item.snippet.title,channel:item.snippet.channelTitle,thumbnail:item.snippet.thumbnails.medium?.url,thumbnailHigh:item.snippet.thumbnails.high?.url,views:YT.formatNum(item.statistics?.viewCount),url:u,platform:'YouTube'};
+        openAppPanel(currentV);document.getElementById('urlIn').value='';return;
+      }
+    }catch(e){}
+  }
+  currentV={title:'فيديو من الرابط',url:u,platform:'YouTube',thumbnail:'',views:'—',channel:''};
+  openAppPanel(currentV);document.getElementById('urlIn').value='';
 }
 function pasteApp(){
   navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('urlIn').value=t;showToast('📋 تم اللصق!');}}).catch(()=>{document.getElementById('urlIn').value='https://youtube.com/watch?v=dQw4w9WgXcQ';showToast('📋 تم اللصق!');});
@@ -425,6 +454,9 @@ function showToast(msg){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2000);
 }
+
+// ── init ──────────────────────────────────────────────────
+loadAppVideos('trending');
 </script>
 </body>
 </html>

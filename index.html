@@ -212,39 +212,67 @@ footer a{color:var(--primary);text-decoration:none;font-size:13px;margin:0 8px}
 
 <script src="shared.js"></script>
 <script>
-const VIDEOS=[
-  {e:'🌟',t:'أجمل مناظر الطبيعة في العالم',v:'15M',d:'12:34',c:'trending',p:'YouTube'},
-  {e:'🎬',t:'فيلم أكشن 2025 الأفضل',v:'8.2M',d:'2:05:12',c:'movies',p:'Facebook'},
-  {e:'🎵',t:'أحدث الأغاني العربية 2025',v:'22M',d:'3:45',c:'music',p:'SoundCloud'},
-  {e:'⚽',t:'أهداف الأسبوع – دوري أبطال أوروبا',v:'12M',d:'8:20',c:'sports',p:'YouTube'},
-  {e:'😂',t:'أفضل مقاطع الكوميديا',v:'30M',d:'15:00',c:'trending',p:'TikTok'},
-  {e:'📰',t:'آخر الأخبار العالمية اليوم',v:'5M',d:'6:10',c:'news',p:'YouTube'},
-  {e:'🚀',t:'الذكاء الاصطناعي – مستقبل العالم',v:'11M',d:'18:30',c:'trending',p:'YouTube'},
-  {e:'🍳',t:'وصفات رمضانية سهلة وسريعة',v:'9M',d:'10:15',c:'trending',p:'Instagram'},
-  {e:'🎮',t:'أقوى ألعاب 2025 مراجعة كاملة',v:'18M',d:'25:00',c:'movies',p:'YouTube'},
-  {e:'💪',t:'تمارين اللياقة اليومية',v:'7M',d:'30:00',c:'sports',p:'YouTube'},
-];
 const PLATFORMS=['▶️ YouTube','📘 Facebook','🎵 TikTok','📷 Instagram','🐦 Twitter','🎬 Dailymotion','🎥 Vimeo','🎶 SoundCloud','📡 Twitch','➕ 1000+ أخرى'];
 let currentVideo=null;
+let cachedVideos={};
 
 document.getElementById('chipRow').innerHTML=PLATFORMS.map(p=>`<div class="chip">${p}</div>`).join('');
 
+// ── render with real thumbnails ───────────────────────────
 function renderGrid(list){
+  if(!list||!list.length){
+    document.getElementById('videoGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">جاري التحميل...</div>`;
+    return;
+  }
   document.getElementById('videoGrid').innerHTML=list.map(v=>`
-    <div class="vcard">
-      <div class="vthumb">${v.e}<span class="vdur">${v.d}</span></div>
-      <div class="vinfo"><div class="vtitle">${v.t}</div><div class="vmeta">👁 ${v.v} · ${v.p}</div></div>
-      <button class="vdl-btn" onclick="openPanel(${JSON.stringify(v).replace(/"/g,'&quot;')})">⬇️ تحميل</button>
+    <div class="vcard" onclick="openPanel(${JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;')})">
+      <div class="vthumb" style="background:#000;overflow:hidden">
+        <img src="${v.thumbnail||''}" alt="${v.title}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'">
+        <span class="vdur">${v.duration||'—'}</span>
+        <div class="play-hover">▶</div>
+      </div>
+      <div class="vinfo">
+        <div class="vtitle">${v.title}</div>
+        <div class="vmeta">👁 ${v.views} · ${v.channel||v.platform}</div>
+      </div>
+      <button class="vdl-btn" onclick="event.stopPropagation();openPanel(${JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;')})">⬇️ تحميل</button>
     </div>`).join('');
 }
 
-function switchTab(el,cat){
+// ── load YouTube videos ───────────────────────────────────
+async function loadVideos(cat='trending'){
+  document.getElementById('videoGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">⏳ جاري تحميل الفيديوهات...</div>`;
+  if(cachedVideos[cat]){renderGrid(cachedVideos[cat]);return;}
+  let videos=[];
+  if(cat==='trending') videos=await YT.getTrending('EG',16);
+  else videos=await YT.getByCategory(YT.categories[cat]||'10','EG',16);
+  if(!videos.length){
+    document.getElementById('videoGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">⚠️ تعذر تحميل الفيديوهات، تحقق من الاتصال</div>`;
+    return;
+  }
+  cachedVideos[cat]=videos;
+  renderGrid(videos);
+}
+
+async function switchTab(el,cat){
   document.querySelectorAll('.vtab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
   const labels={trending:'🔥 الأكثر مشاهدة',movies:'🎬 أفلام',music:'🎵 موسيقى',sports:'⚽ رياضة',news:'📰 أخبار'};
   document.getElementById('secTitle').textContent=labels[cat]||'فيديوهات';
-  renderGrid(cat==='trending'?VIDEOS:VIDEOS.filter(v=>v.c===cat||Math.random()>.5));
+  await loadVideos(cat);
 }
+
+// ── search ────────────────────────────────────────────────
+async function doSearch(){
+  const q=document.querySelector('.search-wrap input').value.trim();
+  if(!q)return;
+  showToast('🔍 جاري البحث...');
+  const results=await YT.search(q,16);
+  if(results.length){renderGrid(results);document.getElementById('secTitle').textContent='🔍 نتائج: '+q;}
+  else showToast('لم يتم العثور على نتائج');
+}
+document.querySelector('.search-wrap button').onclick=doSearch;
+document.querySelector('.search-wrap input').onkeydown=e=>{if(e.key==='Enter')doSearch();};
 
 function openPanel(v){
   currentVideo=v;
@@ -253,20 +281,26 @@ function openPanel(v){
     {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
     {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
   ];
-  document.getElementById('qualityList').innerHTML=qualities.map(q=>`
+  document.getElementById('qualityList').innerHTML=`
+    <div style="display:flex;gap:12px;padding:0 0 12px;border-bottom:1px solid var(--border);margin-bottom:12px">
+      <img src="${v.thumbnailHigh||v.thumbnail||''}" style="width:120px;height:68px;object-fit:cover;border-radius:8px;background:#000" onerror="this.style.display='none'">
+      <div><div style="font-size:13px;font-weight:700;line-height:1.4">${v.title}</div><div style="font-size:11px;color:var(--muted);margin-top:4px">${v.channel||''} · 👁 ${v.views}</div></div>
+    </div>
+    ${qualities.map(q=>`
     <div class="qrow" onclick="doDownload('${q.q}','🎬','${q.s}')">
       <span class="qlabel">${q.i} ${q.q}</span>
       <span class="qmeta">${q.s} <button class="qdl">تحميل</button></span>
-    </div>`).join('');
+    </div>`).join('')}
+    <div style="margin-top:8px;text-align:center">
+      <a href="${v.url}" target="_blank" style="color:var(--primary);font-size:13px;text-decoration:none">▶️ مشاهدة على YouTube</a>
+    </div>`;
   document.getElementById('overlay').classList.add('open');
 }
 function closeOverlay(){document.getElementById('overlay').classList.remove('open');}
 function closePanel(e){if(e.target===document.getElementById('overlay'))closeOverlay();}
 
 function doDownload(quality,emoji,size){
-  if(currentVideo){
-    VM.addDownload({title:currentVideo.t,quality,size,platform:currentVideo.p||'YouTube',userId:1});
-  }
+  if(currentVideo) VM.addDownload({title:currentVideo.title,quality,size,platform:'YouTube',userId:1});
   closeOverlay();
   showToast('✅ بدأ التحميل بجودة '+quality);
 }
@@ -275,7 +309,7 @@ function analyzeURL(){
   const url=document.getElementById('urlInput').value.trim();
   if(!url){showToast('❌ الصق رابط الفيديو أولاً');return;}
   showToast('⚡ جاري تحليل الرابط...');
-  setTimeout(()=>{currentVideo={t:'فيديو من الرابط',p:'YouTube'};openPanel(currentVideo);document.getElementById('urlInput').value='';},700);
+  setTimeout(()=>{currentVideo={title:'فيديو من الرابط',channel:'YouTube',url,platform:'YouTube',thumbnail:'',views:'—'};openPanel(currentVideo);document.getElementById('urlInput').value='';},700);
 }
 function pasteURL(){
   navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('urlInput').value=t;showToast('📋 تم اللصق!');}}).catch(()=>{document.getElementById('urlInput').value='https://youtube.com/watch?v=dQw4w9WgXcQ';showToast('📋 تم اللصق!');});
@@ -285,7 +319,13 @@ function showToast(msg){
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);
 }
 
-renderGrid(VIDEOS);
+// ── add play hover style ──────────────────────────────────
+const s=document.createElement('style');
+s.textContent=`.play-hover{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:rgba(245,130,13,.9);border-radius:50%;display:grid;place-items:center;font-size:16px;opacity:0;transition:.2s}.vcard:hover .play-hover{opacity:1}.vthumb{position:relative}`;
+document.head.appendChild(s);
+
+// ── init ─────────────────────────────────────────────────
+loadVideos('trending');
 </script>
 </body>
 </html>
