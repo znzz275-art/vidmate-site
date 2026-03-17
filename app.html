@@ -300,7 +300,7 @@ function showSk(){
 function renderFeat(list){
   if(!list||!list.length) return;
   document.getElementById('featScroll').innerHTML=list.slice(0,6).map(v=>`
-    <div class="feat-card" onclick="openQPanel(${esc(v)})">
+    <div class="feat-card" onclick="location.href='vidmate_watch.html?v=${v.id}'">
       <div class="feat-thumb"><img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'"></div>
       <div class="feat-play">▶</div>
       <div class="feat-over"><div class="feat-title">${v.title}</div><div class="feat-dur">👁 ${v.views}</div></div>
@@ -313,17 +313,22 @@ function renderGrid(list){
     return;
   }
   document.getElementById('appGrid').innerHTML=list.map(v=>`
-    <div class="vcard">
+    <div class="vcard" onclick="location.href='vidmate_watch.html?v=${v.id}'">
       <div class="vthumb">
         <img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
         <span class="vdur">${v.duration}</span>
       </div>
       <div class="vinfo"><div class="vtitle">${v.title}</div><div class="vmeta">👁 ${v.views}</div></div>
-      <button class="vdl" onclick="openQPanel(${esc(v)})">⬇️ تحميل</button>
+      <button class="vdl" onclick="event.stopPropagation();openQPanel(${esc(v)})">⬇️ تحميل</button>
     </div>`).join('');
 }
 
 function esc(v){return JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
+function goWatch(v){
+  sessionStorage.setItem('watchVideo', JSON.stringify(v));
+  location.href = `vidmate_watch.html?v=${v.id}`;
+}
 
 let curCat='trending';
 async function loadAppCat(cat){

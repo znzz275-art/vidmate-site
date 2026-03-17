@@ -221,7 +221,7 @@ function renderGrid(list){
     return;
   }
   document.getElementById('vgrid').innerHTML=list.map(v=>`
-    <div class="vcard" onclick="openPanel(${esc(v)})">
+    <div class="vcard" onclick="goWatch(${esc(v)})">
       <div class="vthumb">
         <img src="${v.thumbnail}" alt="" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
         <span class="vdur">${v.duration}</span>
@@ -236,6 +236,12 @@ function renderGrid(list){
 }
 
 function esc(v){return JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
+function goWatch(v){
+  // Store video data for watch page
+  sessionStorage.setItem('watchVideo', JSON.stringify(v));
+  location.href = `vidmate_watch.html?v=${v.id}`;
+}
 
 // ── load category ────────────────────────────────────────────
 let currentCat='trending';
