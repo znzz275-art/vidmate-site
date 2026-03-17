@@ -13,142 +13,126 @@
 :root{--p:#f5820d;--pd:#d96a00;--bg:#080808;--s1:#111;--s2:#181818;--s3:#222;--br:#2a2a2a;--tx:#f0f0f0;--mt:#777;--gn:#22c55e;--rd:#ef4444}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-
-/* topbar */
-.topbar{background:var(--s1);padding:10px 14px;display:flex;align-items:center;gap:9px;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--br)}
-.logo{font-size:19px;font-weight:900;color:var(--p);display:flex;align-items:center;gap:6px;flex-shrink:0}
-.logo-box{width:28px;height:28px;background:var(--p);border-radius:7px;display:grid;place-items:center;font-size:13px;color:#fff}
-.tsearch{flex:1;display:flex;align-items:center;background:var(--s2);border-radius:20px;padding:6px 12px;gap:6px;border:1.5px solid var(--br)}
-.tsearch input{background:none;border:none;outline:none;color:var(--tx);font-size:12px;flex:1;font-family:inherit}
-.tsearch input::placeholder{color:var(--mt)}
-.notif{position:relative;font-size:19px;cursor:pointer}
-.ndot{position:absolute;top:0;left:0;width:7px;height:7px;background:var(--rd);border-radius:50%}
-
+.topbar{background:var(--s1);padding:10px 13px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--br)}
+.logo{font-size:18px;font-weight:900;color:var(--p);display:flex;align-items:center;gap:5px;flex-shrink:0}
+.logo span{width:26px;height:26px;background:var(--p);border-radius:6px;display:grid;place-items:center;font-size:12px;color:#fff}
+.ts{flex:1;display:flex;align-items:center;background:var(--s2);border-radius:19px;padding:6px 10px;gap:5px;border:1.5px solid var(--br)}
+.ts input{background:none;border:none;outline:none;color:var(--tx);font-size:12px;flex:1;font-family:inherit}
+.ts input::placeholder{color:var(--mt)}
+.nd{position:relative;font-size:18px;cursor:pointer}
+.ndot{position:absolute;top:0;left:0;width:6px;height:6px;background:var(--rd);border-radius:50%}
 /* hero */
-.hero-bar{background:linear-gradient(135deg,#1a0800,#2a1000);padding:14px;border-bottom:2px solid var(--p);display:flex;align-items:center;gap:12px}
-.hero-bar h2{font-size:17px;font-weight:900;color:var(--p)}
-.hero-bar p{font-size:11px;color:#bbb;margin-top:2px}
-.apk-btn{background:var(--p);color:#fff;border:none;padding:8px 14px;border-radius:18px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;flex-shrink:0}
-
+.hbar{background:linear-gradient(135deg,#1a0800,#2a1000);padding:13px;border-bottom:2px solid var(--p);display:flex;align-items:center;gap:10px}
+.hbar h2{font-size:16px;font-weight:900;color:var(--p)}
+.hbar p{font-size:10px;color:#bbb;margin-top:1px}
+.apkb{background:var(--p);color:#fff;border:none;padding:7px 12px;border-radius:16px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;flex-shrink:0}
 /* url */
-.url-sec{padding:11px 13px;background:var(--s1);border-bottom:1px solid var(--br)}
-.url-lbl{font-size:11px;color:var(--mt);margin-bottom:7px}
-.url-row{display:flex;gap:5px}
-.url-in{flex:1;background:var(--s2);border:1.5px solid var(--br);border-radius:8px;padding:8px 11px;color:var(--tx);font-size:12px;outline:none;font-family:inherit}
-.url-in:focus{border-color:var(--p)}
-.pb{background:var(--s3);border:1.5px solid var(--br);color:var(--tx);padding:8px 10px;border-radius:8px;cursor:pointer;font-size:11px;font-family:inherit}
-.go-b{background:var(--p);border:none;color:#fff;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px}
-
+.usec{padding:10px 12px;background:var(--s1);border-bottom:1px solid var(--br)}
+.ulbl{font-size:10px;color:var(--mt);margin-bottom:6px}
+.urow{display:flex;gap:5px}
+.uin{flex:1;background:var(--s2);border:1.5px solid var(--br);border-radius:7px;padding:7px 10px;color:var(--tx);font-size:11px;outline:none;font-family:inherit;min-width:0}
+.uin:focus{border-color:var(--p)}
+.pb{background:var(--s3);border:1.5px solid var(--br);color:var(--tx);padding:7px 9px;border-radius:7px;cursor:pointer;font-size:10px;font-family:inherit;flex-shrink:0}
+.gob{background:var(--p);border:none;color:#fff;padding:7px 11px;border-radius:7px;font-weight:700;cursor:pointer;font-family:inherit;font-size:11px;flex-shrink:0}
 /* chips */
-.chips-sec{padding:10px 13px;border-bottom:1px solid var(--br)}
-.chip-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
-.chip-row::-webkit-scrollbar{display:none}
-.chip{display:flex;align-items:center;gap:4px;background:var(--s1);border:1.5px solid var(--br);border-radius:16px;padding:5px 10px;font-size:11px;color:var(--mt);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.csec{padding:9px 12px;border-bottom:1px solid var(--br)}
+.crow{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
+.crow::-webkit-scrollbar{display:none}
+.chip{display:flex;align-items:center;gap:3px;background:var(--s1);border:1.5px solid var(--br);border-radius:15px;padding:4px 9px;font-size:10px;color:var(--mt);cursor:pointer;white-space:nowrap;flex-shrink:0}
 .chip:hover{border-color:var(--p);color:var(--p)}
-
 /* tabs */
 .tabs{display:flex;background:var(--s1);border-bottom:1px solid var(--br);overflow-x:auto}
 .tabs::-webkit-scrollbar{display:none}
-.tab{padding:10px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--mt);white-space:nowrap;border-bottom:2.5px solid transparent;font-family:inherit;background:none;border-top:none;border-right:none;border-left:none}
+.tab{padding:9px 13px;font-size:11px;font-weight:600;cursor:pointer;color:var(--mt);white-space:nowrap;border-bottom:2px solid transparent;font-family:inherit;background:none;border-top:none;border-right:none;border-left:none}
 .tab.on{color:var(--p);border-bottom-color:var(--p)}
-
 /* featured */
-.feat-sec{padding:10px 13px 4px}
-.sec-lbl{font-size:12px;font-weight:700;margin-bottom:8px}
-.feat-scroll{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}
-.feat-scroll::-webkit-scrollbar{height:2px}
-.feat-scroll::-webkit-scrollbar-thumb{background:var(--br)}
-.feat-card{min-width:155px;border-radius:9px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
-.feat-thumb{width:155px;height:90px;background:#000;overflow:hidden;position:relative}
-.feat-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.feat-over{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.87));padding:18px 7px 7px}
-.feat-title{font-size:10px;color:#fff;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.feat-dur{font-size:9px;color:#bbb;margin-top:2px}
-.feat-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;background:rgba(245,130,13,.92);border-radius:50%;display:grid;place-items:center;font-size:12px;opacity:0;transition:.2s}
-.feat-card:hover .feat-play{opacity:1}
-
-/* vgrid */
-.vgrid-sec{padding:0 10px 10px}
-.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.vcard{background:var(--s1);border:1.5px solid var(--br);border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s}
+.fsec{padding:9px 12px 3px}
+.slbl{font-size:11px;font-weight:700;margin-bottom:7px}
+.fscroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:3px}
+.fscroll::-webkit-scrollbar{height:2px}
+.fscroll::-webkit-scrollbar-thumb{background:var(--br)}
+.fcard{min-width:148px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
+.fthumb{width:148px;height:86px;background:#000;overflow:hidden;position:relative}
+.fthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.fover{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.88));padding:16px 6px 6px}
+.ftit{font-size:9px;color:#fff;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fdur{font-size:8px;color:#bbb;margin-top:1px}
+.fplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px;background:rgba(245,130,13,.9);border-radius:50%;display:grid;place-items:center;font-size:11px;opacity:0;transition:.2s}
+.fcard:hover .fplay{opacity:1}
+/* grid */
+.gsec{padding:0 9px 9px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.vcard{background:var(--s1);border:1.5px solid var(--br);border-radius:9px;overflow:hidden;cursor:pointer;transition:.15s}
 .vcard:hover{border-color:var(--p)}
-.vthumb{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
-.vthumb img{width:100%;height:100%;object-fit:cover;display:block}
-.vdur{position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,.82);color:#fff;font-size:9px;padding:2px 5px;border-radius:4px}
-.vinfo{padding:7px}
-.vtitle{font-size:11px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.vmeta{font-size:10px;color:var(--mt);margin-top:3px}
-.vdl{display:flex;align-items:center;justify-content:center;gap:3px;background:var(--p);color:#fff;border:none;width:100%;padding:6px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
+.vt{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
+.vt img{width:100%;height:100%;object-fit:cover;display:block}
+.vdur{position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,.85);color:#fff;font-size:8px;padding:1px 4px;border-radius:3px}
+.vi{padding:6px}
+.vtit2{font-size:10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vm{font-size:9px;color:var(--mt);margin-top:2px}
+.vdb{display:flex;align-items:center;justify-content:center;gap:3px;background:var(--p);color:#fff;border:none;width:100%;padding:5px;font-size:9px;font-weight:700;cursor:pointer;font-family:inherit}
 /* skeleton */
-.sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200% 100%;animation:sh 1.5s infinite;border-radius:6px}
+.sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200%;animation:sh 1.4s infinite;border-radius:4px}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
 /* pages */
-.page{display:none;padding-bottom:66px}
+.page{display:none;padding-bottom:64px}
 .page.on{display:block}
-
 /* search */
-.search-pg{padding:11px 13px 66px}
-.trend-item{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--br);cursor:pointer}
-.t-num{font-size:13px;font-weight:700;color:var(--mt);width:20px}
-.t-txt{font-size:12px}
-
+.spg{padding:11px 12px 64px}
+.ti{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--br);cursor:pointer}
+.tn{font-size:12px;font-weight:700;color:var(--mt);width:19px}
+.tt{font-size:11px}
 /* live */
-.live-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:11px}
-.live-card{background:var(--s1);border-radius:9px;padding:11px 7px;text-align:center;cursor:pointer;border:1.5px solid var(--br)}
-.live-card:hover{border-color:var(--p)}
-.live-icon{font-size:24px;margin-bottom:4px}
-.live-name{font-size:10px;color:#ccc}
-.live-badge{display:inline-block;background:var(--rd);color:#fff;font-size:8px;padding:2px 5px;border-radius:5px;font-weight:700;margin-bottom:3px}
-
-/* dl page */
-.dl-hd{padding:11px 13px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--br)}
-.dl-tabs{display:flex;gap:5px;padding:7px 13px;border-bottom:1px solid var(--br);overflow-x:auto}
-.dl-tabs::-webkit-scrollbar{display:none}
-.dtab{background:var(--s1);border:1.5px solid var(--br);color:var(--mt);padding:4px 10px;border-radius:13px;font-size:10px;cursor:pointer;white-space:nowrap;font-family:inherit}
-.dtab.on{background:rgba(245,130,13,.15);border-color:var(--p);color:var(--p);font-weight:700}
-.dl-item{display:flex;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--br)}
-.dl-thumb{width:50px;height:34px;background:var(--s2);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;overflow:hidden}
-.dl-thumb img{width:100%;height:100%;object-fit:cover}
-.dl-info{flex:1;overflow:hidden}
-.dl-name{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dl-sz{font-size:10px;color:var(--mt);margin-top:2px}
-.dl-st{font-size:10px;padding:3px 7px;border-radius:6px;font-weight:700;flex-shrink:0}
-.dl-st.done{background:#0f2d1a;color:var(--gn)}
-
-/* bottom nav */
-.bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--s1);border-top:1px solid var(--br);display:flex;z-index:50}
-.bn{flex:1;padding:8px 4px 7px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--mt);font-size:9px;border:none;background:none;font-family:inherit}
-.bn.on{color:var(--p)}
-.bn svg{width:19px;height:19px;fill:currentColor}
-
-/* quality panel */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:none;align-items:flex-end;justify-content:center}
-.overlay.open{display:flex}
-.qpanel{background:var(--s1);border-top:2px solid var(--p);border-radius:16px 16px 0 0;padding:16px;width:100%;max-width:430px;max-height:80vh;overflow-y:auto}
-.qp-title{font-size:14px;font-weight:700;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center}
-.qrow{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--br);border-radius:8px;padding:9px 12px;margin-bottom:6px;cursor:pointer}
-.qrow:hover{border-color:var(--p)}
-.qlbl{font-size:12px;font-weight:700}
-.qmt{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mt)}
-.qdl{background:var(--p);color:#fff;border:none;padding:4px 11px;border-radius:12px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
-.vid-prev{display:flex;gap:9px;margin-bottom:11px;padding-bottom:11px;border-bottom:1px solid var(--br)}
-.vid-prev img{width:90px;height:52px;object-fit:cover;border-radius:6px;background:#000;flex-shrink:0}
-.vid-prev-info{flex:1;overflow:hidden}
-.vid-prev-title{font-size:11px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.vid-prev-ch{font-size:10px;color:var(--mt);margin-top:3px}
-
+.lgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:10px}
+.lcard{background:var(--s1);border-radius:9px;padding:11px 6px;text-align:center;cursor:pointer;border:1.5px solid var(--br)}
+.lcard:hover{border-color:var(--p)}
+.li{font-size:22px;margin-bottom:3px}
+.ln{font-size:9px;color:#ccc}
+.lb{display:inline-block;background:var(--rd);color:#fff;font-size:7px;padding:2px 4px;border-radius:4px;font-weight:700;margin-bottom:2px}
+/* dl */
+.dlhd{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--br)}
+.dltabs{display:flex;gap:5px;padding:7px 12px;border-bottom:1px solid var(--br);overflow-x:auto}
+.dltabs::-webkit-scrollbar{display:none}
+.dtab{background:var(--s1);border:1.5px solid var(--br);color:var(--mt);padding:3px 9px;border-radius:12px;font-size:10px;cursor:pointer;white-space:nowrap;font-family:inherit}
+.dtab.on{background:rgba(245,130,13,.14);border-color:var(--p);color:var(--p);font-weight:700}
+.dli{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--br)}
+.dlt{width:46px;height:32px;background:var(--s2);border-radius:5px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:14px}
+.dlt img{width:100%;height:100%;object-fit:cover}
+.dli-inf{flex:1;overflow:hidden}
+.dln{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dlsz{font-size:9px;color:var(--mt);margin-top:1px}
+.dlst{font-size:9px;padding:2px 6px;border-radius:5px;font-weight:700;flex-shrink:0}
+.dlst.done{background:#0f2d1a;color:var(--gn)}
 /* settings */
-.set-row{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:1px solid var(--br)}
-.set-lbl{font-size:12px}
-.set-val{font-size:11px;color:var(--mt)}
-.toggle{width:38px;height:21px;background:var(--s3);border-radius:10.5px;position:relative;cursor:pointer;transition:.2s;border:none;flex-shrink:0}
+.sr{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid var(--br)}
+.sl{font-size:11px}
+.sv{font-size:10px;color:var(--mt)}
+.toggle{width:36px;height:20px;background:var(--s3);border-radius:10px;position:relative;cursor:pointer;transition:.2s;border:none;flex-shrink:0}
 .toggle.on{background:var(--p)}
-.toggle::after{content:'';position:absolute;top:2.5px;left:2.5px;width:16px;height:16px;background:#fff;border-radius:50%;transition:.2s}
-.toggle.on::after{left:19.5px}
-
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:.2s}
+.toggle.on::after{left:18px}
+/* bottom nav */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--s1);border-top:1px solid var(--br);display:flex;z-index:50}
+.bn{flex:1;padding:8px 3px 7px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--mt);font-size:8px;border:none;background:none;font-family:inherit}
+.bn.on{color:var(--p)}
+.bn svg{width:18px;height:18px;fill:currentColor}
+/* overlay */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.ov.open{display:flex}
+.qp{background:var(--s1);border-top:2px solid var(--p);border-radius:14px 14px 0 0;padding:15px;width:100%;max-width:430px;max-height:80vh;overflow-y:auto}
+.qph{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.qrow{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--br);border-radius:7px;padding:8px 11px;margin-bottom:5px;cursor:pointer}
+.qrow:hover{border-color:var(--p)}
+.ql{font-size:11px;font-weight:700}
+.qm{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--mt)}
+.qdb{background:var(--p);color:#fff;border:none;padding:4px 10px;border-radius:11px;font-size:9px;font-weight:700;cursor:pointer;font-family:inherit}
+.vpr{display:flex;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--br)}
+.vpr img{width:86px;height:48px;object-fit:cover;border-radius:5px;background:#000;flex-shrink:0}
+.vpri{flex:1;overflow:hidden}
+.vprt{font-size:10px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vprc{font-size:9px;color:var(--mt);margin-top:2px}
 /* toast */
-.toast{position:fixed;top:64px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:8px 18px;border-radius:20px;font-size:12px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none;max-width:90%;text-align:center}
+.toast{position:fixed;top:62px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:8px 16px;border-radius:20px;font-size:11px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none;max-width:88%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
@@ -156,72 +140,79 @@ a{text-decoration:none;color:inherit}
 <div class="toast" id="toast"></div>
 
 <div class="topbar">
-  <div class="logo"><div class="logo-box">▶</div>VidMate</div>
-  <div class="tsearch">
-    <span style="color:var(--mt);font-size:13px">🔍</span>
-    <input type="text" id="searchIn" placeholder="ابحث..." onkeydown="if(event.key==='Enter')appSearch()">
+  <div class="logo"><span>▶</span>VidMate</div>
+  <div class="ts">
+    <span style="color:var(--mt);font-size:12px">🔍</span>
+    <input type="text" id="si" placeholder="ابحث..." onkeydown="if(event.key==='Enter')appSearch()">
   </div>
-  <div class="notif" onclick="showToast('🔔 لا يوجد إشعارات جديدة')">🔔<div class="ndot"></div></div>
+  <div class="nd" onclick="showToast('🔔 لا يوجد إشعارات')">🔔<div class="ndot"></div></div>
 </div>
 
 <!-- HOME -->
 <div class="page on" id="page-home">
-  <div class="hero-bar">
+  <div class="hbar">
     <div style="flex:1"><h2>⚡ VidMate 2026</h2><p>تحميل فيديو من 1000+ منصة · مجاناً</p></div>
-    <button class="apk-btn" onclick="showToast('📱 جاري تحميل APK...')">⬇️ APK</button>
+    <button class="apkb" onclick="showToast('📱 جاري تحميل APK...')">⬇️ APK</button>
   </div>
-  <div class="url-sec">
-    <div class="url-lbl">📥 الصق رابط الفيديو</div>
-    <div class="url-row">
-      <input class="url-in" id="urlIn" type="url" placeholder="https://youtube.com/...">
+  <div class="usec">
+    <div class="ulbl">📥 الصق رابط الفيديو</div>
+    <div class="urow">
+      <input class="uin" id="ui" type="url" placeholder="https://youtube.com/...">
       <button class="pb" onclick="pasteApp()">📋</button>
-      <button class="go-b" onclick="analyzeApp()">⚡</button>
+      <button class="gob" onclick="analyzeApp()">⚡</button>
     </div>
   </div>
-  <div class="chips-sec"><div class="chip-row" id="chips"></div></div>
+  <div class="csec">
+    <div class="crow">
+      <div class="chip">▶️ YouTube</div><div class="chip">📘 Facebook</div>
+      <div class="chip">🎵 TikTok</div><div class="chip">📷 Instagram</div>
+      <div class="chip">🐦 Twitter</div><div class="chip">🎬 Dailymotion</div>
+    </div>
+  </div>
   <div class="tabs" id="appTabs">
-    <button class="tab on" onclick="switchAppTab(this,'trending')">🔥 ترند</button>
-    <button class="tab" onclick="switchAppTab(this,'music')">🎵 موسيقى</button>
-    <button class="tab" onclick="switchAppTab(this,'sports')">⚽ رياضة</button>
-    <button class="tab" onclick="switchAppTab(this,'gaming')">🎮 ألعاب</button>
-    <button class="tab" onclick="switchAppTab(this,'news')">📰 أخبار</button>
+    <button class="tab on" onclick="switchTab(this,'trending')">🔥 ترند</button>
+    <button class="tab" onclick="switchTab(this,'music')">🎵 موسيقى</button>
+    <button class="tab" onclick="switchTab(this,'sports')">⚽ رياضة</button>
+    <button class="tab" onclick="switchTab(this,'gaming')">🎮 ألعاب</button>
+    <button class="tab" onclick="switchTab(this,'news')">📰 أخبار</button>
+    <button class="tab" onclick="switchTab(this,'comedy')">😂 كوميديا</button>
   </div>
-  <div class="feat-sec">
-    <div class="sec-lbl">⭐ مميزة</div>
-    <div class="feat-scroll" id="featScroll"></div>
+  <div class="fsec">
+    <div class="slbl">⭐ مميزة</div>
+    <div class="fscroll" id="featScroll"></div>
   </div>
-  <div class="feat-sec"><div class="sec-lbl" id="gridTitle">🔥 الأكثر مشاهدة</div></div>
-  <div class="vgrid-sec"><div class="vgrid" id="appGrid"></div></div>
+  <div class="fsec"><div class="slbl" id="gridTit">🔥 الأكثر مشاهدة</div></div>
+  <div class="gsec"><div class="vgrid" id="appGrid"></div></div>
 </div>
 
 <!-- SEARCH -->
 <div class="page" id="page-search">
-  <div class="search-pg">
-    <div class="tsearch" style="margin-bottom:12px;background:var(--s1)">
-      <span style="color:var(--mt);font-size:13px">🔍</span>
-      <input type="text" id="searchIn2" placeholder="ابحث هنا..." style="background:none;border:none;outline:none;color:var(--tx);font-size:12px;flex:1;font-family:inherit" onkeydown="if(event.key==='Enter')appSearch2()">
-      <button onclick="appSearch2()" style="background:var(--p);border:none;color:#fff;padding:5px 11px;border-radius:13px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">بحث</button>
+  <div class="spg">
+    <div class="ts" style="margin-bottom:11px;background:var(--s1)">
+      <span style="color:var(--mt);font-size:12px">🔍</span>
+      <input type="text" id="si2" placeholder="ابحث هنا..." style="background:none;border:none;outline:none;color:var(--tx);font-size:12px;flex:1;font-family:inherit" onkeydown="if(event.key==='Enter')appSearch2()">
+      <button onclick="appSearch2()" style="background:var(--p);border:none;color:#fff;padding:4px 10px;border-radius:12px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit">بحث</button>
     </div>
-    <div style="font-size:11px;color:var(--mt);margin-bottom:7px">🔥 الأكثر بحثاً</div>
+    <div style="font-size:10px;color:var(--mt);margin-bottom:6px">🔥 الأكثر بحثاً</div>
     <div id="trendList"></div>
-    <div style="font-size:11px;color:var(--mt);margin:13px 0 7px">📂 التصنيفات</div>
-    <div class="chip-row" id="catList" style="flex-wrap:wrap;overflow:visible"></div>
+    <div style="font-size:10px;color:var(--mt);margin:11px 0 6px">📂 التصنيفات</div>
+    <div class="crow" id="catList" style="flex-wrap:wrap;overflow:visible"></div>
   </div>
 </div>
 
 <!-- LIVE -->
 <div class="page" id="page-live">
-  <div style="padding:9px 13px;border-bottom:1px solid var(--br);font-size:12px;color:var(--mt)">📡 بث مباشر</div>
-  <div class="live-grid" id="liveGrid"></div>
+  <div style="padding:8px 12px;border-bottom:1px solid var(--br);font-size:11px;color:var(--mt)">📡 بث مباشر</div>
+  <div class="lgrid" id="liveGrid"></div>
 </div>
 
 <!-- DOWNLOADS -->
 <div class="page" id="page-dl">
-  <div class="dl-hd">
-    <span style="font-size:13px;font-weight:700">⬇️ تحميلاتي</span>
-    <button onclick="clrDl()" style="background:none;border:1.5px solid var(--br);color:var(--mt);padding:5px 11px;border-radius:12px;font-size:10px;cursor:pointer;font-family:inherit">مسح الكل</button>
+  <div class="dlhd">
+    <span style="font-size:12px;font-weight:700">⬇️ تحميلاتي</span>
+    <button onclick="clrDl()" style="background:none;border:1.5px solid var(--br);color:var(--mt);padding:4px 10px;border-radius:11px;font-size:9px;cursor:pointer;font-family:inherit">مسح الكل</button>
   </div>
-  <div class="dl-tabs">
+  <div class="dltabs">
     <button class="dtab on">الكل</button>
     <button class="dtab">فيديو</button>
     <button class="dtab">صوت</button>
@@ -231,23 +222,23 @@ a{text-decoration:none;color:inherit}
 
 <!-- SETTINGS -->
 <div class="page" id="page-settings">
-  <div style="padding:11px 13px;font-size:14px;font-weight:700;border-bottom:1px solid var(--br)">⚙️ الإعدادات</div>
-  <div style="padding:8px 13px;font-size:10px;color:var(--mt);border-bottom:1px solid var(--br);text-transform:uppercase;letter-spacing:1px">التحميل</div>
-  <div class="set-row"><span class="set-lbl">جودة افتراضية</span><span class="set-val">1080p HD</span></div>
-  <div class="set-row"><span class="set-lbl">تحميل في الخلفية</span><button class="toggle on" onclick="this.classList.toggle('on')"></button></div>
-  <div class="set-row"><span class="set-lbl">Wi-Fi فقط</span><button class="toggle" onclick="this.classList.toggle('on')"></button></div>
-  <div style="padding:8px 13px;font-size:10px;color:var(--mt);border-bottom:1px solid var(--br);text-transform:uppercase;letter-spacing:1px;margin-top:6px">النظام</div>
-  <div class="set-row"><span class="set-lbl">الإصدار</span><span class="set-val">VidMate 5.0</span></div>
-  <div class="set-row" onclick="showToast('✅ التطبيق محدث!')"><span class="set-lbl">تحديث</span><span class="set-val" style="color:var(--gn)">✓ محدث</span></div>
-  <div class="set-row" onclick="showToast('✅ تم مسح الكاش!')"><span class="set-lbl">مسح الكاش</span><span class="set-val">156 MB ›</span></div>
-  <div style="padding:14px 13px;display:flex;flex-direction:column;gap:9px">
-    <a href="vidmate_admin.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(245,130,13,.12);border:1.5px solid var(--p);color:var(--p);padding:10px;border-radius:18px;font-size:12px;font-weight:700">⚙️ لوحة إدارة الموقع</a>
-    <a href="vidmate_index.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--s1);border:1.5px solid var(--br);color:var(--mt);padding:10px;border-radius:18px;font-size:12px">🌐 الموقع الرسمي</a>
+  <div style="padding:10px 12px;font-size:13px;font-weight:700;border-bottom:1px solid var(--br)">⚙️ الإعدادات</div>
+  <div style="padding:6px 12px;font-size:9px;color:var(--mt);border-bottom:1px solid var(--br);text-transform:uppercase;letter-spacing:1px">التحميل</div>
+  <div class="sr"><span class="sl">جودة افتراضية</span><span class="sv">1080p HD</span></div>
+  <div class="sr"><span class="sl">تحميل في الخلفية</span><button class="toggle on" onclick="this.classList.toggle('on')"></button></div>
+  <div class="sr"><span class="sl">Wi-Fi فقط</span><button class="toggle" onclick="this.classList.toggle('on')"></button></div>
+  <div style="padding:6px 12px;font-size:9px;color:var(--mt);border-bottom:1px solid var(--br);text-transform:uppercase;letter-spacing:1px;margin-top:4px">النظام</div>
+  <div class="sr"><span class="sl">الإصدار</span><span class="sv">VidMate 5.0</span></div>
+  <div class="sr" onclick="showToast('✅ التطبيق محدث!')"><span class="sl">تحديث</span><span class="sv" style="color:var(--gn)">✓ محدث</span></div>
+  <div class="sr" onclick="showToast('✅ تم مسح الكاش!')"><span class="sl">مسح الكاش</span><span class="sv">156 MB ›</span></div>
+  <div style="padding:12px;display:flex;flex-direction:column;gap:8px">
+    <a href="vidmate_admin.html" style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(245,130,13,.12);border:1.5px solid var(--p);color:var(--p);padding:9px;border-radius:16px;font-size:11px;font-weight:700">⚙️ لوحة إدارة الموقع</a>
+    <a href="vidmate_index.html" style="display:flex;align-items:center;justify-content:center;gap:5px;background:var(--s1);border:1.5px solid var(--br);color:var(--mt);padding:9px;border-radius:16px;font-size:11px">🌐 الموقع الرسمي</a>
   </div>
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="bot-nav">
+<div class="bnav">
   <button class="bn on" id="bn-home" onclick="goPage('home')">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>الرئيسية
   </button>
@@ -266,219 +257,196 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="if(event.target===this)closeOv()">
-  <div class="qpanel">
-    <div class="qp-title">⬇️ اختر الجودة <span style="cursor:pointer;color:var(--mt)" onclick="closeOv()">✕</span></div>
-    <div id="qContent"></div>
+<div class="ov" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="qp">
+    <div class="qph">⬇️ اختر الجودة <span style="cursor:pointer;color:var(--mt);font-size:19px" onclick="closeOv()">✕</span></div>
+    <div id="qc"></div>
   </div>
 </div>
 
 <script src="vidmate_shared.js"></script>
 <script>
-const PLAT=['▶️ YouTube','📘 Facebook','🎵 TikTok','📷 Instagram','🐦 Twitter','🎬 Dailymotion'];
 const TRENDS=['ريال مدريد 2025','أحمد حلمي','موسيقى ريلاكس','مباراة اليوم','وصفة كنافة','تعلم الإنجليزية','مسلسل 2025','كوميديا'];
 const CATS=['🎬 أفلام','🎵 موسيقى','⚽ رياضة','📺 مسلسلات','😂 كوميديا','🍳 طبخ','✈️ سفر','🎮 ألعاب'];
-const LIVE=[
-  {e:'📺',n:'العربية',l:true},{e:'🎙️',n:'MBC مصر',l:true},{e:'🌐',n:'BBC Arabic',l:true},
-  {e:'🔴',n:'الجزيرة',l:true},{e:'⭐',n:'روتانا',l:false},{e:'📡',n:'Sport TV',l:true},
-];
-let curV=null, cache={};
+const LIVE=[{e:'📺',n:'العربية',l:true},{e:'🎙️',n:'MBC مصر',l:true},{e:'🌐',n:'BBC Arabic',l:true},{e:'🔴',n:'الجزيرة',l:true},{e:'⭐',n:'روتانا',l:false},{e:'📡',n:'Sport TV',l:true}];
+let curV=null, cache={}, curCat='trending';
 
-document.getElementById('chips').innerHTML=PLAT.map(p=>`<div class="chip">${p}</div>`).join('');
-
-// ── skeletons ─────────────────────────────────────────────
+// ── skeleton ─────────────────────────────────────────────────
 function showSk(){
   document.getElementById('appGrid').innerHTML=Array(8).fill(0).map(()=>`
     <div class="vcard" style="pointer-events:none">
-      <div class="vthumb sk"></div>
-      <div class="vinfo"><div class="sk" style="height:12px;margin-bottom:5px;border-radius:3px"></div><div class="sk" style="height:10px;width:55%;border-radius:3px"></div></div>
-      <div style="height:28px;background:var(--s3)"></div>
+      <div style="aspect-ratio:16/9" class="sk"></div>
+      <div class="vi"><div class="sk" style="height:11px;margin-bottom:4px"></div><div class="sk" style="height:9px;width:55%"></div></div>
+      <div style="height:24px;background:var(--s3)"></div>
     </div>`).join('');
 }
 
-// ── render ────────────────────────────────────────────────
+// ── render featured ──────────────────────────────────────────
 function renderFeat(list){
   if(!list||!list.length) return;
   document.getElementById('featScroll').innerHTML=list.slice(0,6).map(v=>`
-    <div class="feat-card" onclick="location.href='vidmate_watch.html?v=${v.id}'">
-      <div class="feat-thumb"><img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'"></div>
-      <div class="feat-play">▶</div>
-      <div class="feat-over"><div class="feat-title">${v.title}</div><div class="feat-dur">👁 ${v.views}</div></div>
+    <div class="fcard" onclick="goWatch('${v.id}','${e2(v.title)}','${e2(v.channel)}','${v.thumbnail}')">
+      <div class="fthumb"><img src="${v.thumbnail}" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'"></div>
+      <div class="fplay">▶</div>
+      <div class="fover"><div class="ftit">${v.title}</div><div class="fdur">👁 ${v.views}</div></div>
     </div>`).join('');
 }
 
+// ── render grid ──────────────────────────────────────────────
 function renderGrid(list){
   if(!list||!list.length){
-    document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--mt);font-size:12px">⚠️ تعذر التحميل — <span style="color:var(--p);cursor:pointer" onclick="loadAppCat(curCat)">إعادة المحاولة</span></div>`;
+    document.getElementById('appGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:28px;color:var(--mt);font-size:11px">⚠️ تعذر التحميل<br><span style="color:var(--p);cursor:pointer" onclick="loadCat(curCat)">إعادة المحاولة</span></div>`;
     return;
   }
   document.getElementById('appGrid').innerHTML=list.map(v=>`
-    <div class="vcard" onclick="location.href='vidmate_watch.html?v=${v.id}'">
-      <div class="vthumb">
-        <img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
+    <div class="vcard" onclick="goWatch('${v.id}','${e2(v.title)}','${e2(v.channel)}','${v.thumbnail}')">
+      <div class="vt">
+        <img src="${v.thumbnail}" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'">
         <span class="vdur">${v.duration}</span>
       </div>
-      <div class="vinfo"><div class="vtitle">${v.title}</div><div class="vmeta">👁 ${v.views}</div></div>
-      <button class="vdl" onclick="event.stopPropagation();openQPanel(${esc(v)})">⬇️ تحميل</button>
+      <div class="vi"><div class="vtit2">${v.title}</div><div class="vm">👁 ${v.views}</div></div>
+      <button class="vdb" onclick="event.stopPropagation();openOv(${esc(v)})">⬇️ تحميل</button>
     </div>`).join('');
 }
 
 function esc(v){return JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-
-function goWatch(v){
-  sessionStorage.setItem('watchVideo', JSON.stringify(v));
-  location.href = `vidmate_watch.html?v=${v.id}`;
+function e2(s){return (s||'').replace(/'/g,'&#39;').replace(/"/g,'&quot;');}
+function goWatch(id,title,channel,thumb){
+  const v={id,title,channel,thumbnail:thumb,thumbnailHigh:`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,url:`https://www.youtube.com/watch?v=${id}`};
+  sessionStorage.setItem('wv',JSON.stringify(v));
+  location.href=`vidmate_watch.html?v=${id}`;
 }
 
-let curCat='trending';
-async function loadAppCat(cat){
+// ── load category ────────────────────────────────────────────
+async function loadCat(cat){
   curCat=cat;
   if(cache[cat]){renderGrid(cache[cat]);if(cat==='trending')renderFeat(cache[cat]);return;}
   showSk();
+  showToast('⏳ جاري التحميل...');
   const list=cat==='trending'?await YT.getTrending('EG',12):await YT.getByCategory(cat,12);
   cache[cat]=list;
   renderGrid(list);
   if(cat==='trending') renderFeat(list);
+  if(list.length) clearToast();
 }
 
-async function switchAppTab(el,cat){
+function switchTab(el,cat){
   document.querySelectorAll('#appTabs .tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
-  const lb={trending:'🔥 ترند',music:'🎵 موسيقى',sports:'⚽ رياضة',gaming:'🎮 ألعاب',news:'📰 أخبار'};
-  document.getElementById('gridTitle').textContent=lb[cat]||'فيديوهات';
-  await loadAppCat(cat);
+  const lb={trending:'🔥 ترند',music:'🎵 موسيقى',sports:'⚽ رياضة',gaming:'🎮 ألعاب',news:'📰 أخبار',comedy:'😂 كوميديا'};
+  document.getElementById('gridTit').textContent=lb[cat]||'فيديوهات';
+  loadCat(cat);
 }
 
-// ── pages ─────────────────────────────────────────────────
+// ── pages ────────────────────────────────────────────────────
 function goPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.bn').forEach(b=>b.classList.remove('on'));
   document.getElementById('page-'+name).classList.add('on');
   document.getElementById('bn-'+name).classList.add('on');
-  const fns={search:renderSearch,live:renderLive,dl:renderDl};
-  if(fns[name]) fns[name]();
+  if(name==='search') renderSearch();
+  if(name==='live') renderLive();
+  if(name==='dl') renderDl();
 }
 
 function renderSearch(){
   document.getElementById('trendList').innerHTML=TRENDS.map((t,i)=>`
-    <div class="trend-item" onclick="doSearchCat('${t}')">
-      <span class="t-num">${i+1}</span><span class="t-txt">${t}</span>
-      <span style="margin-right:auto;font-size:14px">🔥</span></div>`).join('');
-  document.getElementById('catList').innerHTML=CATS.map(c=>`
-    <div class="chip" onclick="doSearchCat('${c.replace(/[🎬🎵⚽📺😂🍳✈️🎮]/gu,'').trim()}')">${c}</div>`).join('');
+    <div class="ti" onclick="doSearchQ('${t}')">
+      <span class="tn">${i+1}</span><span class="tt">${t}</span>
+      <span style="margin-right:auto;font-size:13px">🔥</span></div>`).join('');
+  document.getElementById('catList').innerHTML=CATS.map(c=>`<div class="chip" onclick="doSearchQ('${c.replace(/[^\w\s]/gu,'').trim()}')">${c}</div>`).join('');
 }
 
 async function appSearch(){
-  const q=document.getElementById('searchIn').value.trim();
+  const q=document.getElementById('si').value.trim();
   if(!q) return;
-  goPage('search');
-  setTimeout(()=>{document.getElementById('searchIn2').value=q; appSearch2();},100);
+  goPage('home'); showSk(); showToast('🔍 جاري البحث...');
+  document.getElementById('gridTit').textContent='🔍 '+q;
+  const r=await YT.search(q,12); cache['s_'+q]=r; renderGrid(r); clearToast();
 }
 async function appSearch2(){
-  const q=document.getElementById('searchIn2').value.trim();
+  const q=document.getElementById('si2').value.trim();
   if(!q) return;
-  showToast('🔍 جاري البحث...');
-  goPage('home');
-  document.getElementById('gridTitle').textContent='🔍 نتائج: '+q;
-  showSk();
-  const r=await YT.search(q,12);
-  renderGrid(r);
+  goPage('home'); showSk(); showToast('🔍 جاري البحث...');
+  document.getElementById('gridTit').textContent='🔍 '+q;
+  const r=await YT.search(q,12); cache['s_'+q]=r; renderGrid(r); clearToast();
 }
-async function doSearchCat(q){
-  showToast('🔍 '+q);
-  goPage('home');
-  document.getElementById('gridTitle').textContent='🔍 '+q;
-  showSk();
-  const r=await YT.search(q,12);
-  renderGrid(r);
+async function doSearchQ(q){
+  goPage('home'); showSk(); showToast('🔍 '+q);
+  document.getElementById('gridTit').textContent='🔍 '+q;
+  const r=await YT.search(q,12); renderGrid(r); clearToast();
 }
 
 function renderLive(){
   document.getElementById('liveGrid').innerHTML=LIVE.map(ch=>`
-    <div class="live-card" onclick="showToast('📺 جاري فتح ${ch.n}')">
-      ${ch.l?'<div class="live-badge">🔴 LIVE</div><br>':''}
-      <div class="live-icon">${ch.e}</div>
-      <div class="live-name">${ch.n}</div>
+    <div class="lcard" onclick="showToast('📺 جاري فتح ${ch.n}')">
+      ${ch.l?'<div class="lb">🔴 LIVE</div><br>':''}
+      <div class="li">${ch.e}</div>
+      <div class="ln">${ch.n}</div>
     </div>`).join('');
 }
 
 function renderDl(){
   const dls=VM.getDownloads();
   document.getElementById('dlList').innerHTML=dls.length
-    ? dls.map(d=>`
-      <div class="dl-item">
-        <div class="dl-thumb">${d.thumbnail?`<img src="${d.thumbnail}" onerror="this.style.display='none'">`:'🎬'}</div>
-        <div class="dl-info">
-          <div class="dl-name">${d.title||'فيديو'}</div>
-          <div class="dl-sz">${d.size||'—'} · ${d.quality||'—'}</div>
-        </div>
-        <div class="dl-st done">✓ مكتمل</div>
+    ? dls.map(d=>`<div class="dli">
+        <div class="dlt">${d.thumbnail?`<img src="${d.thumbnail}" onerror="this.style.display='none'">`:'🎬'}</div>
+        <div class="dli-inf"><div class="dln">${d.title||'فيديو'}</div><div class="dlsz">${d.size||'—'} · ${d.quality||'—'}</div></div>
+        <div class="dlst done">✓</div>
       </div>`).join('')
-    : '<div style="padding:28px;text-align:center;color:var(--mt);font-size:12px">لا توجد تحميلات بعد</div>';
+    : '<div style="padding:26px;text-align:center;color:var(--mt);font-size:11px">لا توجد تحميلات بعد</div>';
 }
 function clrDl(){VM.saveDownloads([]);renderDl();showToast('✅ تم المسح');}
 
-// ── quality panel ─────────────────────────────────────────
-function openQPanel(v){
+// ── quality overlay ──────────────────────────────────────────
+function openOv(v){
   curV=v;
-  const qs=[
-    {q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},
-    {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
-    {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
-  ];
-  document.getElementById('qContent').innerHTML=`
-    <div class="vid-prev">
-      <img src="${v.thumbnailHigh||v.thumbnail}" onerror="this.style.display='none'">
-      <div class="vid-prev-info">
-        <div class="vid-prev-title">${v.title||'فيديو'}</div>
-        <div class="vid-prev-ch">${v.channel||''} · 👁 ${v.views||'—'}</div>
-        <a href="${v.url||'#'}" target="_blank" style="font-size:10px;color:var(--p);display:block;margin-top:3px">▶️ مشاهدة على YouTube</a>
+  const qs=[{q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},{q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},{q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'}];
+  document.getElementById('qc').innerHTML=`
+    <div class="vpr">
+      <img src="${v.thumbnail}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'">
+      <div class="vpri">
+        <div class="vprt">${v.title||'فيديو'}</div>
+        <div class="vprc">${v.channel||''} · 👁 ${v.views||'—'}</div>
+        <a href="${v.url||'#'}" target="_blank" style="font-size:9px;color:var(--p);display:block;margin-top:2px">▶️ يوتيوب</a>
       </div>
     </div>
-    ${qs.map(q=>`
-    <div class="qrow" onclick="doDl('${q.q}','${q.s}')">
-      <span class="qlbl">${q.i} ${q.q}</span>
-      <span class="qmt">${q.s}<button class="qdl">⬇️</button></span>
-    </div>`).join('')}
-    <div style="margin-top:9px;padding:9px;background:var(--s2);border-radius:8px">
-      <div style="font-size:11px;color:var(--mt);margin-bottom:6px">🎵 MP3</div>
+    ${qs.map(q=>`<div class="qrow" onclick="doDl('${q.q}','${q.s}')"><span class="ql">${q.i} ${q.q}</span><span class="qm">${q.s}<button class="qdb">⬇️</button></span></div>`).join('')}
+    <div style="margin-top:8px;padding:8px;background:var(--s2);border-radius:7px">
+      <div style="font-size:10px;color:var(--mt);margin-bottom:5px">🎵 MP3</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-        <div class="qrow" style="margin:0" onclick="doDl('MP3 128kbps','~3 MB')"><span class="qlbl">128 kbps</span><button class="qdl">⬇️</button></div>
-        <div class="qrow" style="margin:0" onclick="doDl('MP3 320kbps','~8 MB')"><span class="qlbl">320 kbps</span><button class="qdl">⬇️</button></div>
+        <div class="qrow" style="margin:0" onclick="doDl('MP3 128kbps','~3 MB')"><span class="ql">128 kbps</span><button class="qdb">⬇️</button></div>
+        <div class="qrow" style="margin:0" onclick="doDl('MP3 320kbps','~8 MB')"><span class="ql">320 kbps</span><button class="qdb">⬇️</button></div>
       </div>
     </div>`;
-  document.getElementById('overlay').classList.add('open');
+  document.getElementById('ov').classList.add('open');
 }
-function closeOv(){document.getElementById('overlay').classList.remove('open');}
-
-function doDl(quality,size){
-  if(curV) VM.addDownload({title:curV.title||'فيديو',quality,size,platform:'YouTube',thumbnail:curV.thumbnail,userId:1});
-  closeOv();
-  showToast('✅ تم إضافة التحميل · '+quality);
+function closeOv(){document.getElementById('ov').classList.remove('open');}
+function doDl(q,s){
+  if(curV) VM.addDownload({title:curV.title||'فيديو',quality:q,size:s,platform:'YouTube',thumbnail:curV.thumbnail,userId:1});
+  closeOv(); showToast('✅ تم إضافة التحميل · '+q);
 }
 
-// ── analyze URL ───────────────────────────────────────────
+// ── analyze URL ──────────────────────────────────────────────
 async function analyzeApp(){
-  const u=document.getElementById('urlIn').value.trim();
+  const u=document.getElementById('ui').value.trim();
   if(!u){showToast('❌ الصق رابط أولاً');return;}
-  showToast('⚡ جاري التحليل...');
-  const info=await YT.getVideoInfo(u);
-  if(info){openQPanel(info);}
-  else showToast('⚠️ لم يتم التعرف على الرابط');
-  document.getElementById('urlIn').value='';
+  const match=u.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if(match){
+    const id=match[1];
+    curV={id,title:'فيديو YouTube',channel:'',views:'—',thumbnail:`https://i.ytimg.com/vi/${id}/mqdefault.jpg`,url:u};
+    document.getElementById('ui').value='';
+    openOv(curV);
+  } else showToast('⚠️ رابط غير صحيح');
 }
-
 function pasteApp(){
-  navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('urlIn').value=t;showToast('📋 تم اللصق!');}}).catch(()=>showToast('⚠️ الصق يدوياً في الخانة'));
+  navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('ui').value=t;showToast('📋 تم اللصق!');}}).catch(()=>showToast('⚠️ الصق يدوياً'));
 }
 
-function showToast(m){
-  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);
-}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);}
+function clearToast(){document.getElementById('toast').classList.remove('show');}
 
-// ── init ─────────────────────────────────────────────────
-loadAppCat('trending');
+loadCat('trending');
 </script>
 </body>
 </html>

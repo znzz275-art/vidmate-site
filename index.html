@@ -3,118 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VidMate — تحميل الفيديو</title>
+<title>VidMate</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#f5820d;--pd:#d96a00;--glow:rgba(245,130,13,.15);--bg:#080808;--s1:#111;--s2:#181818;--s3:#222;--br:#2a2a2a;--tx:#f0f0f0;--mt:#888;--gn:#22c55e;--rd:#ef4444}
+:root{--p:#f5820d;--pd:#d96a00;--bg:#080808;--s1:#111;--s2:#181818;--s3:#222;--br:#2a2a2a;--tx:#f0f0f0;--mt:#888;--gn:#22c55e;--rd:#ef4444}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}
-a{text-decoration:none}
-/* header */
-header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.95);border-bottom:1px solid var(--br);padding:0 20px;height:58px;display:flex;align-items:center;gap:12px}
-.logo{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:900;color:var(--primary);flex-shrink:0}
-.logo-box{width:32px;height:32px;background:var(--primary);border-radius:8px;display:grid;place-items:center;font-size:15px;color:#fff}
-.sw{flex:1;max-width:520px;display:flex;align-items:center;background:var(--s2);border:1.5px solid var(--br);border-radius:26px;padding:0 6px 0 14px;gap:6px}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.96);border-bottom:1px solid var(--br);padding:0 20px;height:56px;display:flex;align-items:center;gap:12px}
+.logo{font-size:20px;font-weight:900;color:var(--p);display:flex;align-items:center;gap:7px;flex-shrink:0}
+.logo span{width:30px;height:30px;background:var(--p);border-radius:8px;display:grid;place-items:center;font-size:14px;color:#fff}
+.sw{flex:1;max-width:500px;display:flex;align-items:center;background:var(--s2);border:1.5px solid var(--br);border-radius:24px;padding:0 6px 0 14px;gap:6px}
 .sw input{flex:1;background:none;border:none;outline:none;color:var(--tx);font-family:inherit;font-size:13px;padding:9px 0}
 .sw input::placeholder{color:var(--mt)}
-.sw button{background:var(--primary);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;display:grid;place-items:center;flex-shrink:0}
-.ha{margin-right:auto;display:flex;gap:8px}
-.btn-o{background:none;border:1.5px solid var(--br);color:var(--mt);padding:7px 14px;border-radius:18px;font-family:inherit;font-size:12px;cursor:pointer;transition:.2s}
-.btn-o:hover{border-color:var(--primary);color:var(--primary)}
-.btn-p{background:var(--primary);border:none;color:#fff;padding:8px 16px;border-radius:18px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.sw button{background:var(--p);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:13px;display:grid;place-items:center;flex-shrink:0}
+.ha{margin-right:auto;display:flex;gap:7px}
+.btn-o{background:none;border:1.5px solid var(--br);color:var(--mt);padding:6px 13px;border-radius:16px;font-family:inherit;font-size:12px;cursor:pointer}
+.btn-o:hover{border-color:var(--p);color:var(--p)}
+.btn-p{background:var(--p);border:none;color:#fff;padding:7px 14px;border-radius:16px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}
 /* hero */
-.hero{padding:52px 20px 36px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none}
-.hero h1{font-size:clamp(28px,5vw,52px);font-weight:900;line-height:1.2;margin-bottom:12px}
-.hero h1 span{color:var(--primary)}
-.hero p{font-size:15px;color:var(--mt);max-width:480px;margin:0 auto 28px;line-height:1.8}
+.hero{padding:48px 20px 32px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(245,130,13,.12),transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(26px,5vw,50px);font-weight:900;line-height:1.2;margin-bottom:10px}
+.hero h1 em{color:var(--p);font-style:normal}
+.hero p{font-size:14px;color:var(--mt);max-width:460px;margin:0 auto 24px;line-height:1.8}
 /* url box */
-.url-box{max-width:680px;margin:0 auto 36px;background:var(--s1);border:1.5px solid var(--br);border-radius:14px;padding:18px}
-.url-box h3{font-size:13px;color:var(--mt);margin-bottom:10px}
-.url-row{display:flex;gap:7px}
-.url-row input{flex:1;background:var(--s2);border:1.5px solid var(--br);border-radius:9px;padding:10px 14px;color:var(--tx);font-family:inherit;font-size:13px;outline:none}
-.url-row input:focus{border-color:var(--primary)}
-.url-row .pb{background:var(--s3);border:1.5px solid var(--br);color:var(--tx);padding:10px 13px;border-radius:9px;cursor:pointer;font-family:inherit;font-size:12px;white-space:nowrap}
-.url-row .ab{background:var(--primary);border:none;color:#fff;padding:10px 18px;border-radius:9px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;white-space:nowrap}
+.ubox{max-width:660px;margin:0 auto 28px;background:var(--s1);border:1.5px solid var(--br);border-radius:13px;padding:16px}
+.ubox label{font-size:12px;color:var(--mt);display:block;margin-bottom:8px}
+.urow{display:flex;gap:6px}
+.urow input{flex:1;background:var(--s2);border:1.5px solid var(--br);border-radius:8px;padding:9px 13px;color:var(--tx);font-family:inherit;font-size:13px;outline:none;min-width:0}
+.urow input:focus{border-color:var(--p)}
+.urow .pb{background:var(--s3);border:1.5px solid var(--br);color:var(--tx);padding:9px 12px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:12px;white-space:nowrap;flex-shrink:0}
+.urow .ab{background:var(--p);border:none;color:#fff;padding:9px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0}
 /* chips */
-.chips{max-width:860px;margin:0 auto 36px;text-align:center}
-.slabel{font-size:11px;color:var(--mt);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
-.chip-row{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
-.chip{display:flex;align-items:center;gap:5px;background:var(--s1);border:1.5px solid var(--br);border-radius:18px;padding:6px 13px;font-size:12px;color:var(--mt);cursor:pointer;transition:.15s}
-.chip:hover{border-color:var(--primary);color:var(--primary)}
+.chips{max-width:860px;margin:0 auto 28px;text-align:center}
+.clabel{font-size:10px;color:var(--mt);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.crow{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chip{display:flex;align-items:center;gap:5px;background:var(--s1);border:1.5px solid var(--br);border-radius:16px;padding:5px 12px;font-size:12px;color:var(--mt);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--p);color:var(--p)}
 /* features */
-.features{padding:40px 20px;background:var(--s1);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.feats{padding:36px 20px;background:var(--s1);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
 .feat-inner{max-width:860px;margin:0 auto}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:24px}
-.fc{background:var(--s2);border:1.5px solid var(--br);border-radius:12px;padding:18px;transition:.2s;cursor:pointer}
-.fc:hover{border-color:var(--primary);transform:translateY(-2px)}
-.fc-icon{font-size:26px;margin-bottom:8px}
-.fc-title{font-size:14px;font-weight:700;margin-bottom:4px}
-.fc-desc{font-size:12px;color:var(--mt);line-height:1.6}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-top:22px}
+.fc{background:var(--s2);border:1.5px solid var(--br);border-radius:11px;padding:16px;transition:.15s;cursor:default}
+.fc:hover{border-color:var(--p)}
+.fc-i{font-size:24px;margin-bottom:7px}
+.fc-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.fc-d{font-size:11px;color:var(--mt);line-height:1.6}
 /* video section */
-.vsec{padding:32px 20px;max-width:1020px;margin:0 auto}
-.vsec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
-.vsec-title{font-size:17px;font-weight:700}
+.vsec{padding:28px 20px;max-width:1020px;margin:0 auto}
+.vhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.vtit{font-size:16px;font-weight:700}
 .tabs-row{display:flex;gap:3px;overflow-x:auto;padding-bottom:2px}
 .tabs-row::-webkit-scrollbar{display:none}
-.vtab{padding:7px 15px;border-radius:18px;font-size:12px;cursor:pointer;color:var(--mt);background:none;border:none;font-family:inherit;white-space:nowrap;transition:.15s}
-.vtab.on{background:var(--glow);color:var(--primary);font-weight:700}
-/* video grid */
-.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:13px}
-.vcard{background:var(--s1);border:1.5px solid var(--br);border-radius:11px;overflow:hidden;cursor:pointer;transition:.2s}
-.vcard:hover{border-color:var(--primary);transform:translateY(-2px)}
+.vtab{padding:6px 14px;border-radius:16px;font-size:12px;cursor:pointer;color:var(--mt);background:none;border:none;font-family:inherit;white-space:nowrap}
+.vtab.on{background:rgba(245,130,13,.15);color:var(--p);font-weight:700}
+/* grid */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px}
+.vcard{background:var(--s1);border:1.5px solid var(--br);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s}
+.vcard:hover{border-color:var(--p);transform:translateY(-2px)}
 .vthumb{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
 .vthumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
-.vcard:hover .vthumb img{transform:scale(1.04)}
-.vdur{position:absolute;bottom:5px;left:5px;background:rgba(0,0,0,.82);color:#fff;font-size:10px;padding:2px 6px;border-radius:5px}
-.play-ov{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:rgba(245,130,13,.92);border-radius:50%;display:grid;place-items:center;font-size:15px;opacity:0;transition:.2s}
-.vcard:hover .play-ov{opacity:1}
-.vinfo{padding:9px}
-.vtitle{font-size:12px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:4px}
-.vmeta{font-size:11px;color:var(--mt)}
-.vdl-btn{display:flex;align-items:center;justify-content:center;gap:4px;background:var(--primary);color:#fff;border:none;width:100%;padding:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}
-.vdl-btn:hover{background:var(--pd)}
-/* loading skeleton */
-.skeleton{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-/* overlay panel */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:flex-end;justify-content:center}
-.overlay.open{display:flex}
-.panel{background:var(--s1);border-top:2px solid var(--primary);border-radius:18px 18px 0 0;padding:18px;width:100%;max-width:600px;max-height:82vh;overflow-y:auto}
-.panel-title{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-.panel-close{cursor:pointer;color:var(--mt);font-size:20px;line-height:1}
-.qrow{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--br);border-radius:9px;padding:10px 14px;margin-bottom:7px;cursor:pointer;transition:.15s}
-.qrow:hover{border-color:var(--primary)}
-.qlabel{font-size:13px;font-weight:700}
-.qmeta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mt)}
-.qdl{background:var(--primary);color:#fff;border:none;padding:5px 13px;border-radius:14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
-.vid-preview{display:flex;gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--br)}
-.vid-preview img{width:120px;height:68px;object-fit:cover;border-radius:7px;background:#000;flex-shrink:0}
-.vid-preview-info{flex:1;overflow:hidden}
-.vid-preview-title{font-size:13px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.vid-preview-meta{font-size:11px;color:var(--mt);margin-top:4px}
-.yt-link{color:var(--primary);font-size:12px;display:inline-block;margin-top:4px}
+.vcard:hover .vthumb img{transform:scale(1.05)}
+.vdur{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.85);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px}
+.pov{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:rgba(245,130,13,.9);border-radius:50%;display:grid;place-items:center;font-size:14px;opacity:0;transition:.2s}
+.vcard:hover .pov{opacity:1}
+.vinfo{padding:8px}
+.vtitle{font-size:12px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px}
+.vmeta{font-size:10px;color:var(--mt)}
+.vdlbtn{display:flex;align-items:center;justify-content:center;gap:4px;background:var(--p);color:#fff;border:none;width:100%;padding:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.vdlbtn:hover{background:var(--pd)}
+/* skeleton */
+.sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200%;animation:sh 1.4s infinite;border-radius:5px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+/* overlay */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.ov.open{display:flex}
+.panel{background:var(--s1);border-top:2px solid var(--p);border-radius:16px 16px 0 0;padding:18px;width:100%;max-width:580px;max-height:85vh;overflow-y:auto}
+.ph{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.qrow{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--br);border-radius:8px;padding:10px 13px;margin-bottom:6px;cursor:pointer}
+.qrow:hover{border-color:var(--p)}
+.ql{font-size:13px;font-weight:700}
+.qr{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mt)}
+.qdb{background:var(--p);color:#fff;border:none;padding:5px 13px;border-radius:13px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.vprev{display:flex;gap:10px;margin-bottom:13px;padding-bottom:13px;border-bottom:1px solid var(--br)}
+.vprev img{width:110px;height:62px;object-fit:cover;border-radius:6px;background:#000;flex-shrink:0}
+.vprev-inf{flex:1;overflow:hidden}
+.vprev-t{font-size:12px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vprev-m{font-size:11px;color:var(--mt);margin-top:3px}
 /* toast */
-.toast{position:fixed;top:66px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:9px 20px;border-radius:22px;font-size:13px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;top:64px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:9px 20px;border-radius:22px;font-size:13px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* footer */
-footer{background:var(--s1);border-top:1px solid var(--br);padding:28px 20px;text-align:center}
-footer p{color:var(--mt);font-size:12px;margin-bottom:8px}
-footer a{color:var(--primary);font-size:12px;margin:0 8px}
-/* error state */
-.err-state{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--mt)}
-.err-state .err-icon{font-size:40px;margin-bottom:12px}
-.err-state p{font-size:14px;margin-bottom:12px}
-.retry-btn{background:var(--primary);border:none;color:#fff;padding:9px 22px;border-radius:20px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+footer{background:var(--s1);border-top:1px solid var(--br);padding:24px 20px;text-align:center}
+footer p{color:var(--mt);font-size:12px;margin-bottom:6px}
+footer a{color:var(--p);font-size:12px;margin:0 8px}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
 <header>
-  <a class="logo" href="index.html"><div class="logo-box">▶</div>VidMate</a>
+  <div class="logo"><span>▶</span>VidMate</div>
   <div class="sw">
-    <span style="color:var(--mt);font-size:15px">🔍</span>
-    <input type="text" id="searchIn" placeholder="ابحث عن أي فيديو..." onkeydown="if(event.key==='Enter')doSearch()">
+    <span style="color:var(--mt);font-size:14px">🔍</span>
+    <input type="text" id="si" placeholder="ابحث عن أي فيديو..." onkeydown="if(event.key==='Enter')doSearch()">
     <button onclick="doSearch()">🔍</button>
   </div>
   <div class="ha">
@@ -124,46 +115,52 @@ footer a{color:var(--primary);font-size:12px;margin:0 8px}
 </header>
 
 <section class="hero">
-  <h1>حمّل أي فيديو<br>من <span>1000+ منصة</span></h1>
-  <p>تحميل فيديو وصوت عالي الجودة من يوتيوب، فيسبوك، تيك توك وأكثر — مجاناً</p>
-  <div style="max-width:680px;margin:0 auto 28px">
-    <div class="url-box" style="margin-bottom:0">
-      <h3>📥 الصق رابط الفيديو هنا</h3>
-      <div class="url-row">
-        <input type="url" id="urlIn" placeholder="https://youtube.com/watch?v=...">
+  <h1>حمّل أي فيديو من<br><em>1000+ منصة</em></h1>
+  <p>يوتيوب · فيسبوك · تيك توك · انستغرام وأكثر — مجاناً وبجودة عالية</p>
+  <div style="max-width:660px;margin:0 auto 24px">
+    <div class="ubox" style="margin-bottom:0">
+      <label>📥 الصق رابط الفيديو هنا</label>
+      <div class="urow">
+        <input type="url" id="ui" placeholder="https://youtube.com/watch?v=...">
         <button class="pb" onclick="pasteURL()">📋 لصق</button>
         <button class="ab" onclick="analyzeURL()">تحليل ⚡</button>
       </div>
     </div>
   </div>
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <a href="vidmate_app.html"><button style="padding:12px 26px;border-radius:26px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;background:var(--primary);border:none;color:#fff;display:flex;align-items:center;gap:7px">📱 تحميل التطبيق</button></a>
-    <button onclick="document.querySelector('.vsec').scrollIntoView({behavior:'smooth'})" style="padding:12px 26px;border-radius:26px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;background:none;border:2px solid var(--br);color:var(--tx)">🎬 تصفح الفيديوهات</button>
+  <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap">
+    <a href="vidmate_app.html"><button style="padding:11px 24px;border-radius:24px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;background:var(--p);border:none;color:#fff">📱 تحميل التطبيق</button></a>
+    <button onclick="document.querySelector('.vsec').scrollIntoView({behavior:'smooth'})" style="padding:11px 24px;border-radius:24px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;background:none;border:2px solid var(--br);color:var(--tx)">🎬 تصفح الفيديوهات</button>
   </div>
 </section>
 
 <div class="chips">
-  <div class="slabel">المنصات المدعومة</div>
-  <div class="chip-row" id="chipRow"></div>
+  <div class="clabel">المنصات المدعومة</div>
+  <div class="crow">
+    <div class="chip">▶️ YouTube</div><div class="chip">📘 Facebook</div>
+    <div class="chip">🎵 TikTok</div><div class="chip">📷 Instagram</div>
+    <div class="chip">🐦 Twitter</div><div class="chip">🎬 Dailymotion</div>
+    <div class="chip">🎥 Vimeo</div><div class="chip">🎶 SoundCloud</div>
+    <div class="chip">➕ 1000+ أخرى</div>
+  </div>
 </div>
 
-<section class="features">
+<section class="feats">
   <div class="feat-inner">
-    <div style="text-align:center"><div class="slabel">لماذا VidMate</div><h2 style="font-size:22px;font-weight:900;margin-top:6px">كل ما تحتاجه في مكان واحد</h2></div>
+    <div style="text-align:center"><div class="clabel">لماذا VidMate</div><h2 style="font-size:20px;font-weight:900;margin-top:6px">كل ما تحتاجه في مكان واحد</h2></div>
     <div class="feat-grid">
-      <div class="fc"><div class="fc-icon">⚡</div><div class="fc-title">سرعة فائقة</div><div class="fc-desc">تحميل متعدد بأقصى سرعة ممكنة</div></div>
-      <div class="fc"><div class="fc-icon">🎬</div><div class="fc-title">جودة 4K</div><div class="fc-desc">من 240p حتى 4K وMP3 بجودة 320kbps</div></div>
-      <div class="fc"><div class="fc-icon">📡</div><div class="fc-title">بث مباشر</div><div class="fc-desc">مشاهدة وتحميل البث المباشر</div></div>
-      <div class="fc"><div class="fc-icon">🔒</div><div class="fc-title">آمن ومحمي</div><div class="fc-desc">بدون فيروسات أو إعلانات مزعجة</div></div>
-      <div class="fc"><div class="fc-icon">📱</div><div class="fc-title">تطبيق Android</div><div class="fc-desc">تطبيق متزامن مع الموقع</div></div>
-      <div class="fc"><div class="fc-icon">🎵</div><div class="fc-title">استخراج MP3</div><div class="fc-desc">حوّل أي فيديو لصوت عالي الجودة</div></div>
+      <div class="fc"><div class="fc-i">⚡</div><div class="fc-t">سرعة فائقة</div><div class="fc-d">تحميل متعدد بأقصى سرعة</div></div>
+      <div class="fc"><div class="fc-i">🎬</div><div class="fc-t">جودة 4K</div><div class="fc-d">من 240p حتى 4K وMP3 320kbps</div></div>
+      <div class="fc"><div class="fc-i">📡</div><div class="fc-t">بث مباشر</div><div class="fc-d">مشاهدة وتحميل البث المباشر</div></div>
+      <div class="fc"><div class="fc-i">🔒</div><div class="fc-t">آمن ومحمي</div><div class="fc-d">بدون فيروسات أو إعلانات</div></div>
+      <div class="fc"><div class="fc-i">📱</div><div class="fc-t">تطبيق Android</div><div class="fc-d">تطبيق متزامن مع الموقع</div></div>
+      <div class="fc"><div class="fc-i">🎵</div><div class="fc-t">استخراج MP3</div><div class="fc-d">حوّل أي فيديو لصوت فوراً</div></div>
     </div>
   </div>
 </section>
 
 <div class="vsec">
-  <div class="vsec-head">
-    <div class="vsec-title" id="secTitle">🔥 الأكثر مشاهدة</div>
+  <div class="vhead">
+    <div class="vtit" id="secTit">🔥 الأكثر مشاهدة</div>
     <div class="tabs-row">
       <button class="vtab on" onclick="switchTab(this,'trending')">🔥 ترند</button>
       <button class="vtab" onclick="switchTab(this,'music')">🎵 موسيقى</button>
@@ -176,10 +173,10 @@ footer a{color:var(--primary);font-size:12px;margin:0 8px}
   <div class="vgrid" id="vgrid"></div>
 </div>
 
-<div class="overlay" id="overlay" onclick="if(event.target===this)closePanel()">
+<div class="ov" id="ov" onclick="if(event.target===this)closeOv()">
   <div class="panel">
-    <div class="panel-title">⬇️ اختر الجودة <span class="panel-close" onclick="closePanel()">✕</span></div>
-    <div id="panelContent"></div>
+    <div class="ph">⬇️ اختر الجودة <span style="cursor:pointer;color:var(--mt);font-size:20px" onclick="closeOv()">✕</span></div>
+    <div id="pc"></div>
   </div>
 </div>
 
@@ -191,147 +188,139 @@ footer a{color:var(--primary);font-size:12px;margin:0 8px}
 
 <script src="vidmate_shared.js"></script>
 <script>
-const PLAT=['▶️ YouTube','📘 Facebook','🎵 TikTok','📷 Instagram','🐦 Twitter','🎬 Dailymotion','🎥 Vimeo','🎶 SoundCloud','📡 Twitch','➕ 1000+ أخرى'];
-document.getElementById('chipRow').innerHTML=PLAT.map(p=>`<div class="chip">${p}</div>`).join('');
+let curVid=null, cache={}, curCat='trending';
 
-let curVid=null, cache={};
-
-// ── render skeletons while loading ──────────────────────────
-function showSkeleton(){
-  document.getElementById('vgrid').innerHTML=Array(10).fill(0).map(()=>`
+// ── skeletons ────────────────────────────────────────────────
+function showSk(){
+  document.getElementById('vgrid').innerHTML=Array(12).fill(0).map(()=>`
     <div class="vcard" style="pointer-events:none">
-      <div class="vthumb skeleton"></div>
+      <div style="aspect-ratio:16/9" class="sk"></div>
       <div class="vinfo">
-        <div class="skeleton" style="height:14px;margin-bottom:6px;border-radius:4px"></div>
-        <div class="skeleton" style="height:11px;width:60%;border-radius:4px"></div>
+        <div class="sk" style="height:13px;margin-bottom:5px"></div>
+        <div class="sk" style="height:10px;width:55%"></div>
       </div>
-      <div style="height:32px;background:var(--s3)"></div>
+      <div style="height:30px;background:var(--s3)"></div>
     </div>`).join('');
 }
 
-// ── render real cards ────────────────────────────────────────
+// ── render grid ──────────────────────────────────────────────
 function renderGrid(list){
   if(!list||!list.length){
     document.getElementById('vgrid').innerHTML=`
-      <div class="err-state">
-        <div class="err-icon">📡</div>
-        <p>تعذّر تحميل الفيديوهات — تحقق من اتصالك</p>
-        <button class="retry-btn" onclick="loadCat(currentCat)">🔄 إعادة المحاولة</button>
+      <div style="grid-column:1/-1;text-align:center;padding:48px 20px">
+        <div style="font-size:32px;margin-bottom:10px">📡</div>
+        <p style="color:var(--mt);font-size:14px;margin-bottom:12px">تعذّر تحميل الفيديوهات</p>
+        <button onclick="loadCat(curCat)" style="background:var(--p);border:none;color:#fff;padding:9px 22px;border-radius:20px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">🔄 إعادة المحاولة</button>
       </div>`;
     return;
   }
   document.getElementById('vgrid').innerHTML=list.map(v=>`
-    <div class="vcard" onclick="goWatch(${esc(v)})">
+    <div class="vcard" onclick="goWatch('${v.id}','${esc2(v.title)}','${esc2(v.channel)}','${v.thumbnail}')">
       <div class="vthumb">
-        <img src="${v.thumbnail}" alt="" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
+        <img src="${v.thumbnail}" loading="lazy"
+          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'">
         <span class="vdur">${v.duration}</span>
-        <div class="play-ov">▶</div>
+        <div class="pov">▶</div>
       </div>
       <div class="vinfo">
         <div class="vtitle">${v.title}</div>
         <div class="vmeta">👁 ${v.views} · ${v.channel}</div>
       </div>
-      <button class="vdl-btn" onclick="event.stopPropagation();openPanel(${esc(v)})">⬇️ تحميل</button>
+      <button class="vdlbtn" onclick="event.stopPropagation();openPanel(${esc(v)})">⬇️ تحميل</button>
     </div>`).join('');
 }
 
 function esc(v){return JSON.stringify(v).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function esc2(s){return (s||'').replace(/'/g,'&#39;').replace(/"/g,'&quot;');}
 
-function goWatch(v){
-  // Store video data for watch page
-  sessionStorage.setItem('watchVideo', JSON.stringify(v));
-  location.href = `vidmate_watch.html?v=${v.id}`;
+function goWatch(id,title,channel,thumb){
+  const v={id,title,channel,thumbnail:thumb,thumbnailHigh:`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,url:`https://www.youtube.com/watch?v=${id}`};
+  sessionStorage.setItem('wv',JSON.stringify(v));
+  location.href=`vidmate_watch.html?v=${id}`;
 }
 
 // ── load category ────────────────────────────────────────────
-let currentCat='trending';
 async function loadCat(cat){
-  currentCat=cat;
+  curCat=cat;
   if(cache[cat]){renderGrid(cache[cat]);return;}
-  showSkeleton();
+  showSk();
+  showToast('⏳ جاري تحميل الفيديوهات...');
   const list = cat==='trending' ? await YT.getTrending('EG',16) : await YT.getByCategory(cat,16);
   cache[cat]=list;
   renderGrid(list);
+  if(list.length) clearToast();
 }
 
 function switchTab(el,cat){
   document.querySelectorAll('.vtab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
   const lb={trending:'🔥 الأكثر مشاهدة',music:'🎵 موسيقى',sports:'⚽ رياضة',gaming:'🎮 ألعاب',news:'📰 أخبار',comedy:'😂 كوميديا'};
-  document.getElementById('secTitle').textContent=lb[cat]||'فيديوهات';
+  document.getElementById('secTit').textContent=lb[cat]||'فيديوهات';
   loadCat(cat);
 }
 
 // ── search ───────────────────────────────────────────────────
 async function doSearch(){
-  const q=document.getElementById('searchIn').value.trim();
+  const q=document.getElementById('si').value.trim();
   if(!q)return;
-  showToast('🔍 جاري البحث...');
-  showSkeleton();
-  document.getElementById('secTitle').textContent='🔍 نتائج: '+q;
+  showSk(); showToast('🔍 جاري البحث...');
+  document.getElementById('secTit').textContent='🔍 نتائج: '+q;
   const r=await YT.search(q,16);
+  cache['search_'+q]=r;
   renderGrid(r);
+  clearToast();
 }
 
-// ── open quality panel ───────────────────────────────────────
+// ── quality panel ────────────────────────────────────────────
 function openPanel(v){
   curVid=v;
-  const qs=[
-    {q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},
-    {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
-    {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
-  ];
-  document.getElementById('panelContent').innerHTML=`
-    <div class="vid-preview">
-      <img src="${v.thumbnailHigh||v.thumbnail}" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
-      <div class="vid-preview-info">
-        <div class="vid-preview-title">${v.title}</div>
-        <div class="vid-preview-meta">${v.channel} · 👁 ${v.views}</div>
-        <a class="yt-link" href="${v.url}" target="_blank">▶️ مشاهدة على YouTube</a>
+  const qs=[{q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},{q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},{q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'}];
+  document.getElementById('pc').innerHTML=`
+    <div class="vprev">
+      <img src="${v.thumbnail}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'">
+      <div class="vprev-inf">
+        <div class="vprev-t">${v.title}</div>
+        <div class="vprev-m">${v.channel} · 👁 ${v.views}</div>
+        <a href="${v.url}" target="_blank" style="font-size:11px;color:var(--p);display:block;margin-top:4px">▶️ فتح على يوتيوب</a>
       </div>
     </div>
-    ${qs.map(q=>`
-    <div class="qrow" onclick="doDL('${q.q}','${q.s}')">
-      <span class="qlabel">${q.i} ${q.q}</span>
-      <span class="qmeta">${q.s}<button class="qdl">⬇️ تحميل</button></span>
-    </div>`).join('')}
-    <div style="margin-top:10px;padding:10px;background:var(--s2);border-radius:9px">
-      <div style="font-size:12px;color:var(--mt);margin-bottom:7px">🎵 استخراج MP3</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
-        <div class="qrow" style="margin:0" onclick="doDL('MP3 128kbps','~3 MB')"><span class="qlabel">128 kbps</span><button class="qdl">⬇️</button></div>
-        <div class="qrow" style="margin:0" onclick="doDL('MP3 320kbps','~8 MB')"><span class="qlabel">320 kbps</span><button class="qdl">⬇️</button></div>
+    ${qs.map(q=>`<div class="qrow" onclick="doDL('${q.q}','${q.s}')"><span class="ql">${q.i} ${q.q}</span><span class="qr">${q.s}<button class="qdb">⬇️ تحميل</button></span></div>`).join('')}
+    <div style="margin-top:9px;padding:10px;background:var(--s2);border-radius:8px">
+      <div style="font-size:11px;color:var(--mt);margin-bottom:7px">🎵 استخراج MP3</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div class="qrow" style="margin:0" onclick="doDL('MP3 128kbps','~3 MB')"><span class="ql">128 kbps</span><button class="qdb">⬇️</button></div>
+        <div class="qrow" style="margin:0" onclick="doDL('MP3 320kbps','~8 MB')"><span class="ql">320 kbps</span><button class="qdb">⬇️</button></div>
       </div>
     </div>`;
-  document.getElementById('overlay').classList.add('open');
+  document.getElementById('ov').classList.add('open');
 }
-function closePanel(){document.getElementById('overlay').classList.remove('open');}
-
-function doDL(quality,size){
-  if(curVid) VM.addDownload({title:curVid.title,quality,size,platform:'YouTube',userId:1});
-  closePanel();
-  showToast('✅ تم إضافة التحميل · '+quality);
+function closeOv(){document.getElementById('ov').classList.remove('open');}
+function doDL(q,s){
+  if(curVid) VM.addDownload({title:curVid.title,quality:q,size:s,platform:'YouTube',thumbnail:curVid.thumbnail,userId:1});
+  closeOv(); showToast('✅ تم إضافة التحميل · '+q);
 }
 
 // ── analyze URL ──────────────────────────────────────────────
 async function analyzeURL(){
-  const u=document.getElementById('urlIn').value.trim();
+  const u=document.getElementById('ui').value.trim();
   if(!u){showToast('❌ الصق رابط الفيديو أولاً');return;}
   showToast('⚡ جاري التحليل...');
-  const info=await YT.getVideoInfo(u);
-  if(info){curVid=info;openPanel(info);}
-  else showToast('⚠️ لم يتم التعرف على الرابط');
-  document.getElementById('urlIn').value='';
+  const match=u.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if(match){
+    const id=match[1];
+    curVid={id,title:'فيديو YouTube',channel:'',views:'—',thumbnail:`https://i.ytimg.com/vi/${id}/mqdefault.jpg`,thumbnailHigh:`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,url:u};
+    document.getElementById('ui').value='';
+    openPanel(curVid);
+  } else showToast('⚠️ رابط غير صحيح');
 }
-
 function pasteURL(){
-  navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('urlIn').value=t;showToast('📋 تم اللصق!');}}).catch(()=>{showToast('⚠️ لصق يدوي فقط في هذا المتصفح');});
+  navigator.clipboard?.readText().then(t=>{if(t){document.getElementById('ui').value=t;showToast('📋 تم اللصق!');}}).catch(()=>showToast('⚠️ الصق يدوياً في الخانة'));
 }
 
-function showToast(m){
-  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400);
-}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);}
+function clearToast(){const t=document.getElementById('toast');t.classList.remove('show');}
 
+// init
 loadCat('trending');
 </script>
 </body>

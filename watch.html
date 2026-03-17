@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VidMate — مشاهدة</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -10,287 +9,248 @@
 :root{--p:#f5820d;--pd:#d96a00;--bg:#080808;--s1:#111;--s2:#181818;--s3:#222;--br:#2a2a2a;--tx:#f0f0f0;--mt:#888;--gn:#22c55e}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
 a{text-decoration:none;color:inherit}
-
-/* header */
-.header{background:rgba(8,8,8,.96);border-bottom:1px solid var(--br);padding:0 16px;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50}
-.back-btn{background:var(--s2);border:1.5px solid var(--br);color:var(--tx);padding:7px 14px;border-radius:18px;cursor:pointer;font-size:13px;font-family:inherit;display:flex;align-items:center;gap:5px}
-.back-btn:hover{border-color:var(--p);color:var(--p)}
-.logo{font-size:18px;font-weight:900;color:var(--p);margin-right:auto;display:flex;align-items:center;gap:6px}
+header{background:rgba(8,8,8,.96);border-bottom:1px solid var(--br);padding:0 16px;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50}
+.logo{font-size:18px;font-weight:900;color:var(--p);display:flex;align-items:center;gap:6px}
 .logo-box{width:28px;height:28px;background:var(--p);border-radius:7px;display:grid;place-items:center;font-size:13px;color:#fff}
-
+.back-btn{background:var(--s2);border:1.5px solid var(--br);color:var(--tx);padding:6px 13px;border-radius:16px;font-family:inherit;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:.2s}
+.back-btn:hover{border-color:var(--p);color:var(--p)}
+.dl-hdr-btn{background:var(--p);border:none;color:#fff;padding:7px 16px;border-radius:16px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-right:auto}
 /* layout */
-.layout{display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1100px;margin:0 auto;padding:20px 16px 40px}
-@media(max-width:768px){.layout{grid-template-columns:1fr;padding:0 0 40px}}
-
-/* player section */
-.player-wrap{background:#000;aspect-ratio:16/9;position:relative;border-radius:12px;overflow:hidden;cursor:pointer}
-.player-wrap iframe{width:100%;height:100%;border:none;display:none}
-.player-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
-.play-btn-big{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(245,130,13,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;transition:.2s;cursor:pointer}
-.play-btn-big:hover{transform:translate(-50%,-50%) scale(1.1);background:var(--pd)}
-.player-playing .player-thumb,.player-playing .play-btn-big{display:none}
-.player-playing iframe{display:block}
-
-/* video info */
-.vinfo-box{padding:14px 0}
-.vtitle-big{font-size:18px;font-weight:700;line-height:1.4;margin-bottom:10px}
-@media(max-width:768px){.vtitle-big{font-size:15px;padding:0 12px}}
-.vmetarow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-@media(max-width:768px){.vmetarow{padding:0 12px}}
-.vmeta-left{display:flex;align-items:center;gap:10px}
-.channel-info{display:flex;align-items:center;gap:8px;cursor:pointer}
-.channel-av{width:36px;height:36px;background:var(--p);border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0}
-.channel-name{font-size:14px;font-weight:700}
-.subs{font-size:11px;color:var(--mt)}
-.sub-btn{background:var(--p);border:none;color:#fff;padding:7px 16px;border-radius:18px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
-.stats-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-@media(max-width:768px){.stats-row{padding:0 12px}}
-.stat-chip{display:flex;align-items:center;gap:5px;background:var(--s2);border:1.5px solid var(--br);border-radius:18px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer}
-.stat-chip:hover{border-color:var(--p)}
-.dl-big-btn{background:var(--p);border:none;color:#fff;padding:8px 20px;border-radius:18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
-.dl-big-btn:hover{background:var(--pd)}
-.share-btn{background:var(--s2);border:1.5px solid var(--br);color:var(--tx);padding:7px 14px;border-radius:18px;font-size:12px;cursor:pointer;font-family:inherit}
-
+.layout{display:grid;grid-template-columns:1fr 340px;gap:0;max-width:1160px;margin:0 auto;padding:16px;align-items:start}
+@media(max-width:860px){.layout{grid-template-columns:1fr;padding:0}.rel-col{padding:16px}}
+/* player */
+.player-wrap{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-bottom:14px}
+.player-wrap iframe{width:100%;height:100%;border:none;display:block}
+/* info */
+.vtitle{font-size:17px;font-weight:700;line-height:1.4;margin-bottom:10px}
+.meta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.meta-it{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--mt)}
+.meta-it strong{color:var(--tx)}
+/* action buttons */
+.act-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.abtn{display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:20px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:.2s}
+.a-dl{background:var(--p);color:#fff}.a-dl:hover{background:var(--pd)}
+.a-yt{background:var(--s2);color:var(--tx);border:1.5px solid var(--br)}.a-yt:hover{border-color:var(--p);color:var(--p)}
+.a-sh{background:var(--s2);color:var(--tx);border:1.5px solid var(--br)}.a-sh:hover{border-color:var(--p);color:var(--p)}
+/* channel */
+.ch-card{background:var(--s1);border:1.5px solid var(--br);border-radius:12px;padding:13px;margin-bottom:13px;display:flex;align-items:center;gap:11px}
+.ch-av{width:44px;height:44px;border-radius:50%;background:var(--p);display:grid;place-items:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0}
+.ch-name{font-size:14px;font-weight:700}
+.ch-sub{font-size:11px;color:var(--mt);margin-top:2px}
+.sub-btn{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:16px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-right:auto}
 /* description */
-.desc-box{background:var(--s1);border:1.5px solid var(--br);border-radius:12px;padding:14px;margin-top:14px}
-@media(max-width:768px){.desc-box{margin:14px 12px 0;border-radius:10px}}
-.desc-title{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.desc-text{font-size:13px;color:var(--mt);line-height:1.8;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.desc-text.expanded{display:block}
-.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tag{background:var(--s3);border:1px solid var(--br);border-radius:14px;padding:4px 11px;font-size:11px;color:var(--mt);cursor:pointer}
+.desc-box{background:var(--s1);border:1.5px solid var(--br);border-radius:12px;padding:13px;margin-bottom:13px}
+.desc-hd{font-size:12px;font-weight:700;color:var(--mt);margin-bottom:7px}
+.desc-body{font-size:13px;line-height:1.7;white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.desc-body.open{-webkit-line-clamp:unset}
+.desc-toggle{color:var(--p);font-size:12px;cursor:pointer;margin-top:5px;display:inline-block}
+/* tags */
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
+.tag{background:var(--s2);border:1.5px solid var(--br);border-radius:14px;padding:4px 10px;font-size:11px;color:var(--mt);cursor:pointer}
 .tag:hover{border-color:var(--p);color:var(--p)}
-
-/* related videos */
-.related-title{font-size:15px;font-weight:700;margin-bottom:12px;padding:0}
-@media(max-width:768px){.related-title{padding:0 12px}}
-.rcard{display:flex;gap:9px;cursor:pointer;padding:8px;border-radius:9px;transition:.15s;margin-bottom:6px}
-.rcard:hover{background:var(--s2)}
-.rthumb{width:120px;height:68px;background:#000;border-radius:7px;overflow:hidden;flex-shrink:0;position:relative}
-.rthumb img{width:100%;height:100%;object-fit:cover}
-.rdur{position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,.82);color:#fff;font-size:9px;padding:1px 4px;border-radius:3px}
-.rinfo{flex:1;overflow:hidden}
-.rtitle{font-size:12px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px}
-.rmeta{font-size:11px;color:var(--mt)}
-
-/* quality panel */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:none;align-items:flex-end;justify-content:center}
-.overlay.open{display:flex}
-.qpanel{background:var(--s1);border-top:2px solid var(--p);border-radius:18px 18px 0 0;padding:18px;width:100%;max-width:560px;max-height:80vh;overflow-y:auto}
-.qp-title{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
+/* quality overlay */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.ov.open{display:flex}
+.panel{background:var(--s1);border-top:2px solid var(--p);border-radius:18px 18px 0 0;padding:18px;width:100%;max-width:560px;max-height:85vh;overflow-y:auto}
+.ph{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
 .qrow{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--br);border-radius:9px;padding:10px 14px;margin-bottom:7px;cursor:pointer;transition:.15s}
 .qrow:hover{border-color:var(--p)}
-.qlbl{font-size:13px;font-weight:700}
-.qmt{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mt)}
-.qdl-btn{background:var(--p);color:#fff;border:none;padding:5px 13px;border-radius:14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
-
+.ql{font-size:13px;font-weight:700}.qm{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mt)}
+.qbtn{background:var(--p);color:#fff;border:none;padding:5px 12px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+/* related */
+.rel-col{padding-left:16px}
+@media(max-width:860px){.rel-col{padding-left:0}}
+.rel-title{font-size:15px;font-weight:700;margin-bottom:12px}
+.rel-card{display:flex;gap:9px;margin-bottom:11px;cursor:pointer;padding:7px;border-radius:9px;transition:.15s}
+.rel-card:hover{background:var(--s2)}
+.rel-thumb{width:128px;height:72px;border-radius:7px;background:#000;overflow:hidden;flex-shrink:0;position:relative}
+.rel-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rdur{position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,.85);color:#fff;font-size:9px;padding:2px 4px;border-radius:3px}
+.rel-info{flex:1;overflow:hidden}
+.rel-t{font-size:11px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rel-ch{font-size:10px;color:var(--mt);margin-top:2px}
+.rel-v{font-size:10px;color:var(--mt)}
 /* skeleton */
-.sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200% 100%;animation:sh 1.5s infinite;border-radius:7px}
+.sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200%;animation:sh 1.4s infinite;border-radius:5px}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
 /* toast */
-.toast{position:fixed;top:62px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:9px 20px;border-radius:22px;font-size:13px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;top:62px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--s3);color:#fff;padding:9px 20px;border-radius:22px;font-size:13px;border:1px solid var(--br);opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
+<header>
+  <button class="back-btn" onclick="history.back()">← رجوع</button>
+  <a class="logo" href="vidmate_index.html"><div class="logo-box">▶</div>VidMate</a>
+  <button class="dl-hdr-btn" onclick="openOv()">⬇️ تحميل</button>
+</header>
 
-<div class="header">
-  <button class="back-btn" onclick="history.back()">◀ رجوع</button>
-  <a href="vidmate_index.html" class="logo"><div class="logo-box">▶</div>VidMate</a>
-</div>
-
-<div class="layout" id="layout">
-  <!-- skeleton while loading -->
-  <div id="main">
-    <div class="sk" style="aspect-ratio:16/9;border-radius:12px;margin-bottom:16px"></div>
-    <div class="sk" style="height:24px;width:80%;margin-bottom:10px"></div>
-    <div class="sk" style="height:16px;width:50%;margin-bottom:20px"></div>
-    <div class="sk" style="height:80px;border-radius:12px"></div>
+<div class="layout">
+  <!-- Player + info -->
+  <div>
+    <div class="player-wrap" id="playerWrap">
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#000">
+        <div style="text-align:center;color:var(--mt)"><div style="font-size:32px;animation:spin 1s linear infinite;display:inline-block">⏳</div><p style="margin-top:8px;font-size:13px">جاري تحميل الفيديو...</p></div>
+      </div>
+    </div>
+    <div id="vInfo"><div style="padding:0 4px">
+      <div class="sk" style="height:22px;margin-bottom:10px"></div>
+      <div class="sk" style="height:14px;width:50%;margin-bottom:18px"></div>
+      <div class="sk" style="height:70px;border-radius:10px"></div>
+    </div></div>
   </div>
-  <div id="sidebar">
-    <div class="sk" style="height:20px;width:60%;margin-bottom:14px"></div>
-    <div style="display:flex;flex-direction:column;gap:8px">
-      ${Array(5).fill(0).map(()=>`
-        <div style="display:flex;gap:9px">
-          <div class="sk" style="width:120px;height:68px;flex-shrink:0"></div>
-          <div style="flex:1"><div class="sk" style="height:13px;margin-bottom:6px"></div><div class="sk" style="height:11px;width:70%"></div></div>
-        </div>`).join('')}
+  <!-- Related -->
+  <div class="rel-col">
+    <div class="rel-title">فيديوهات مشابهة</div>
+    <div id="relList">
+      ${Array(6).fill(0).map(()=>`
+      <div style="display:flex;gap:9px;margin-bottom:11px">
+        <div class="sk" style="width:128px;height:72px;border-radius:7px;flex-shrink:0"></div>
+        <div style="flex:1"><div class="sk" style="height:12px;margin-bottom:5px"></div><div class="sk" style="height:10px;width:70%"></div></div>
+      </div>`).join('')}
     </div>
   </div>
 </div>
 
-<!-- quality overlay -->
-<div class="overlay" id="overlay" onclick="if(event.target===this)closePanel()">
-  <div class="qpanel">
-    <div class="qp-title">⬇️ اختر جودة التحميل <span style="cursor:pointer;color:var(--mt);font-size:20px" onclick="closePanel()">✕</span></div>
-    <div id="qList"></div>
+<!-- Quality Overlay -->
+<div class="ov" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="panel">
+    <div class="ph">⬇️ اختر الجودة <span style="cursor:pointer;color:var(--mt);font-size:20px" onclick="closeOv()">✕</span></div>
+    <div id="pc"></div>
   </div>
 </div>
 
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 <script src="vidmate_shared.js"></script>
 <script>
-let videoData = null;
+const QUALS=[
+  {q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},
+  {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
+  {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
+];
 
-// ── get video ID from URL ─────────────────────────────────
-function getParam(p){ return new URLSearchParams(location.search).get(p); }
-const videoId = getParam('v') || getParam('id');
+const vid = new URLSearchParams(location.search).get('v');
+let vData = null;
 
-if (!videoId) { document.getElementById('main').innerHTML='<div style="text-align:center;padding:60px;color:var(--mt)">⚠️ لم يتم تحديد فيديو</div>'; }
-else { loadVideo(videoId); }
+if (!vid) {
+  document.getElementById('playerWrap').innerHTML=`<div style="display:grid;place-items:center;height:100%;background:#000;color:var(--mt);font-size:14px">⚠️ لم يتم تحديد فيديو — <a href="vidmate_index.html" style="color:var(--p)">رجوع</a></div>`;
+} else {
+  // Show player immediately — no API needed
+  document.getElementById('playerWrap').innerHTML=
+    `<iframe src="https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0&modestbranding=1&hl=ar&playsinline=1"
+      allow="autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen></iframe>`;
+  // Load details
+  loadDetails(vid);
+}
 
-async function loadVideo(id) {
-  const v = await YT.getVideo(id);
-  if (!v) {
-    document.getElementById('main').innerHTML=`
-      <div style="text-align:center;padding:60px 20px;color:var(--mt)">
-        <div style="font-size:40px;margin-bottom:12px">📡</div>
-        <p style="font-size:15px;margin-bottom:14px">تعذّر تحميل الفيديو</p>
-        <button onclick="loadVideo('${id}')" style="background:var(--p);border:none;color:#fff;padding:10px 22px;border-radius:20px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">🔄 إعادة المحاولة</button>
-        <div style="margin-top:14px"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" style="color:var(--p);font-size:13px">▶️ فتح على YouTube مباشرة</a></div>
-      </div>`;
+async function loadDetails(id) {
+  vData = await YT.getVideo(id);
+  document.title = `VidMate — ${vData.title}`;
+  renderInfo(vData);
+  loadRelated(vData.title, id);
+}
+
+function renderInfo(v) {
+  document.getElementById('vInfo').innerHTML=`
+    <div style="padding:0 4px">
+      <div class="vtitle">${v.title}</div>
+      <div class="meta-row">
+        <div class="meta-it">👁 <strong>${v.views}</strong></div>
+        <div class="meta-it">⏱ <strong>${v.duration}</strong></div>
+        <div class="meta-it">👍 <strong>${v.likes||'—'}</strong></div>
+        ${v.pubDate?`<div class="meta-it">📅 <strong>${v.pubDate}</strong></div>`:''}
+      </div>
+      <div class="act-row">
+        <button class="abtn a-dl" onclick="openOv()">⬇️ تحميل</button>
+        <a href="${v.url}" target="_blank"><button class="abtn a-yt">▶️ يوتيوب</button></a>
+        <button class="abtn a-sh" onclick="shareVid()">🔗 مشاركة</button>
+      </div>
+      ${v.channel?`
+      <div class="ch-card">
+        <div class="ch-av">${v.channel[0]||'Q'}</div>
+        <div><div class="ch-name">${v.channel}</div><div class="ch-sub">قناة يوتيوب</div></div>
+        <button class="sub-btn" onclick="showToast('✅ تم الاشتراك!')">اشتراك</button>
+      </div>`:''}
+      ${v.desc?`
+      <div class="desc-box">
+        <div class="desc-hd">الوصف</div>
+        <div class="desc-body" id="db">${v.desc.replace(/</g,'&lt;').replace(/\n/g,'<br>').slice(0,1500)}</div>
+        ${v.desc.length>200?`<span class="desc-toggle" onclick="toggleDesc()">عرض المزيد ↓</span>`:''}
+      </div>`:''}
+      ${v.tags?.length?`
+      <div class="tags">
+        ${v.tags.slice(0,12).map(t=>`<div class="tag" onclick="searchTag('${t}')">#${t}</div>`).join('')}
+      </div>`:''}
+    </div>`;
+}
+
+async function loadRelated(title, excludeId) {
+  const list = await YT.search(title, 14);
+  const filtered = list.filter(v=>v.id!==excludeId).slice(0,12);
+  if (!filtered.length) {
+    document.getElementById('relList').innerHTML='<div style="text-align:center;padding:20px;color:var(--mt);font-size:12px">لا توجد فيديوهات مشابهة</div>';
     return;
   }
-  videoData = v;
-  document.title = v.title + ' — VidMate';
-  renderMain(v);
-  renderSidebar(v.related || []);
-}
-
-function renderMain(v) {
-  document.getElementById('main').innerHTML = `
-    <!-- PLAYER -->
-    <div class="player-wrap" id="playerWrap">
-      <img class="player-thumb" id="pThumb" src="${v.thumbnailMax || v.thumbnailHigh}" onerror="this.src='${v.thumbnail}'" alt="${v.title}">
-      <div class="play-btn-big" onclick="playVideo('${v.id}')">▶</div>
-      <iframe id="playerIframe" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>
-    </div>
-
-    <!-- TITLE -->
-    <div class="vinfo-box">
-      <div class="vtitle-big">${v.title}</div>
-
-      <!-- channel + stats -->
-      <div class="vmetarow">
-        <div class="vmeta-left">
-          <div class="channel-info" onclick="showToast('جاري فتح قناة ${v.channel}')">
-            <div class="channel-av">${(v.channel||'?')[0]}</div>
-            <div>
-              <div class="channel-name">${v.channel}</div>
-              <div class="subs">YouTube</div>
-            </div>
-          </div>
-          <button class="sub-btn" onclick="showToast('✅ تم الاشتراك!')">اشتراك</button>
-        </div>
+  document.getElementById('relList').innerHTML=filtered.map(v=>`
+    <div class="rel-card" onclick="location.href='vidmate_watch.html?v=${v.id}'">
+      <div class="rel-thumb">
+        <img src="${v.thumbnail}" loading="lazy"
+          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'">
+        <span class="rdur">${v.duration}</span>
       </div>
-
-      <div class="stats-row">
-        <div class="stat-chip">👁 ${v.views} مشاهدة</div>
-        <div class="stat-chip" onclick="showToast('👍 إعجاب!')">👍 إعجاب</div>
-        <div class="stat-chip" onclick="shareVideo()">🔗 مشاركة</div>
-        <button class="dl-big-btn" onclick="openPanel()">⬇️ تحميل</button>
+      <div class="rel-info">
+        <div class="rel-t">${v.title}</div>
+        <div class="rel-ch">${v.channel}</div>
+        <div class="rel-v">👁 ${v.views}</div>
       </div>
-
-      <!-- description -->
-      <div class="desc-box">
-        <div class="desc-title" onclick="toggleDesc()">
-          <span>📄 الوصف</span>
-          <span id="descArrow" style="font-size:18px;color:var(--mt)">▼</span>
-        </div>
-        <div class="desc-text" id="descText">${v.description ? v.description.slice(0,800) : 'لا يوجد وصف'}</div>
-        ${v.description && v.description.length>200?`<div style="font-size:12px;color:var(--p);cursor:pointer;margin-top:8px" onclick="toggleDesc()">... عرض المزيد</div>`:''}
-        ${v.tags && v.tags.length ? `
-          <div class="tags-row">
-            ${v.tags.slice(0,8).map(t=>`<div class="tag" onclick="doSearch('${t}')">#${t}</div>`).join('')}
-          </div>` : ''}
-      </div>
-    </div>`;
+    </div>`).join('');
 }
 
-function renderSidebar(related) {
-  document.getElementById('sidebar').innerHTML = `
-    <div class="related-title">📺 فيديوهات مشابهة</div>
-    ${related.length ? related.map(v=>`
-      <div class="rcard" onclick="location.href='vidmate_watch.html?v=${v.id}'">
-        <div class="rthumb">
-          <img src="${v.thumbnail}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/default.jpg'">
-          <span class="rdur">${v.duration}</span>
-        </div>
-        <div class="rinfo">
-          <div class="rtitle">${v.title}</div>
-          <div class="rmeta">${v.channel}</div>
-          <div class="rmeta">👁 ${v.views}</div>
-        </div>
-      </div>`).join('')
-    : '<div style="color:var(--mt);font-size:13px;padding:10px 0">لا توجد فيديوهات مشابهة</div>'}`;
-}
-
-function playVideo(id) {
-  const wrap = document.getElementById('playerWrap');
-  const iframe = document.getElementById('playerIframe');
-  iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-  wrap.classList.add('player-playing');
-}
-
-let descExpanded = false;
-function toggleDesc() {
-  descExpanded = !descExpanded;
-  document.getElementById('descText').classList.toggle('expanded', descExpanded);
-  document.getElementById('descArrow').textContent = descExpanded ? '▲' : '▼';
-}
-
-function openPanel() {
-  const v = videoData;
-  const qs=[
-    {q:'4K Ultra HD',s:'~800 MB',i:'⭐'},{q:'1080p Full HD',s:'~250 MB',i:'🔵'},
-    {q:'720p HD',s:'~120 MB',i:'🟢'},{q:'480p',s:'~60 MB',i:'🟡'},
-    {q:'360p',s:'~30 MB',i:'🟠'},{q:'240p',s:'~15 MB',i:'🔴'},
-  ];
-  document.getElementById('qList').innerHTML=`
-    <div style="display:flex;gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--br)">
-      <img src="${v.thumbnailHigh}" style="width:110px;height:62px;object-fit:cover;border-radius:7px;background:#000;flex-shrink:0" onerror="this.src='${v.thumbnail}'">
+function openOv(){
+  if(!vData){showToast('⏳ انتظر...');return;}
+  document.getElementById('pc').innerHTML=`
+    <div style="display:flex;gap:10px;margin-bottom:13px;padding-bottom:13px;border-bottom:1px solid var(--br)">
+      <img src="${vData.thumbnailHigh||vData.thumbnail}"
+        style="width:110px;height:62px;object-fit:cover;border-radius:7px;background:#000;flex-shrink:0"
+        onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${vData.id}/hqdefault.jpg'">
       <div>
-        <div style="font-size:13px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${v.title}</div>
-        <div style="font-size:11px;color:var(--mt);margin-top:3px">${v.channel}</div>
+        <div style="font-size:13px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${vData.title}</div>
+        <div style="font-size:11px;color:var(--mt);margin-top:3px">${vData.channel} · 👁 ${vData.views}</div>
       </div>
     </div>
-    ${qs.map(q=>`
+    ${QUALS.map(q=>`
     <div class="qrow" onclick="doDL('${q.q}','${q.s}')">
-      <span class="qlbl">${q.i} ${q.q}</span>
-      <span class="qmt">${q.s}<button class="qdl-btn">⬇️ تحميل</button></span>
+      <span class="ql">${q.i} ${q.q}</span>
+      <span class="qm">${q.s}<button class="qbtn">⬇️ تحميل</button></span>
     </div>`).join('')}
-    <div style="margin-top:10px;padding:10px;background:var(--s2);border-radius:9px">
-      <div style="font-size:12px;color:var(--mt);margin-bottom:8px">🎵 استخراج MP3</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
-        <div class="qrow" style="margin:0" onclick="doDL('MP3 128kbps','~3 MB')"><span class="qlbl">128 kbps</span><button class="qdl-btn">⬇️</button></div>
-        <div class="qrow" style="margin:0" onclick="doDL('MP3 320kbps','~8 MB')"><span class="qlbl">320 kbps</span><button class="qdl-btn">⬇️</button></div>
+    <div style="margin-top:9px;padding:10px;background:var(--s2);border-radius:9px">
+      <div style="font-size:12px;color:var(--mt);margin-bottom:7px">🎵 استخراج MP3</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div class="qrow" style="margin:0" onclick="doDL('MP3 128kbps','~3 MB')"><span class="ql">128 kbps</span><button class="qbtn">⬇️</button></div>
+        <div class="qrow" style="margin:0" onclick="doDL('MP3 320kbps','~8 MB')"><span class="ql">320 kbps</span><button class="qbtn">⬇️</button></div>
       </div>
-    </div>
-    <div style="margin-top:12px;text-align:center">
-      <a href="${v.url}" target="_blank" style="color:var(--p);font-size:13px">▶️ مشاهدة على YouTube مباشرة</a>
     </div>`;
-  document.getElementById('overlay').classList.add('open');
+  document.getElementById('ov').classList.add('open');
 }
-function closePanel(){ document.getElementById('overlay').classList.remove('open'); }
-
-function doDL(quality, size) {
-  if (videoData) VM.addDownload({title:videoData.title, quality, size, platform:'YouTube', thumbnail:videoData.thumbnail, userId:1});
-  closePanel();
-  showToast('✅ تم إضافة التحميل · '+quality);
+function closeOv(){document.getElementById('ov').classList.remove('open');}
+function doDL(q,s){
+  VM.addDownload({title:vData?.title||'فيديو',quality:q,size:s,platform:'YouTube',thumbnail:vData?.thumbnail});
+  closeOv(); showToast('✅ تم إضافة التحميل · '+q);
 }
-
-function shareVideo() {
-  const url = location.href;
-  if (navigator.share) { navigator.share({title: videoData?.title, url}); }
-  else { navigator.clipboard?.writeText(url).then(()=>showToast('✅ تم نسخ الرابط!')); }
+function toggleDesc(){
+  const d=document.getElementById('db'),b=document.querySelector('.desc-toggle');
+  d.classList.toggle('open');b.textContent=d.classList.contains('open')?'إخفاء ↑':'عرض المزيد ↓';
 }
-
-function doSearch(q) { location.href='vidmate_index.html?q='+encodeURIComponent(q); }
-
-function showToast(m) {
-  const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show');
-  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2400);
+function searchTag(t){location.href=`vidmate_index.html?search=${encodeURIComponent(t)}`;}
+function shareVid(){
+  const u=vData?.url||location.href;
+  if(navigator.share) navigator.share({title:vData?.title||'VidMate',url:u});
+  else {navigator.clipboard?.writeText(u);showToast('✅ تم نسخ الرابط!');}
+}
+function showToast(m){
+  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400);
 }
 </script>
 </body>
